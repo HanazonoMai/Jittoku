@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://56uljq5w8rna"]
+
+[ext_resource type="Script" uid="uid://c8j4g6g54llsv" path="res://Overworld/enemyOverworld.gd" id="1_1wq0o"]
+[ext_resource type="Texture2D" uid="uid://bxlsbm7v8qlqa" path="res://Overworld/slime-Sheet.png" id="2_1wq0o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htggo"]
+atlas = ExtResource("2_1wq0o")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gl1j"]
+atlas = ExtResource("2_1wq0o")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmv8l"]
+atlas = ExtResource("2_1wq0o")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ptfn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htggo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gl1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmv8l")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wq0o"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wq0o"]
+radius = 16.0
+
+[node name="enemyOverworld" type="CharacterBody2D" unique_id=1101358210]
+collision_layer = 2
+collision_mask = 135
+script = ExtResource("1_1wq0o")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1612243139]
+sprite_frames = SubResource("SpriteFrames_1ptfn")
+autoplay = "default"
+frame_progress = 0.41008216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=546416378]
+shape = SubResource("RectangleShape2D_1wq0o")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1150578346]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1527269072]
+shape = SubResource("CircleShape2D_1wq0o")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

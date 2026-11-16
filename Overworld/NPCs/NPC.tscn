@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cqt8cs6jjjuts"]
+
+[ext_resource type="Script" uid="uid://brubedv2i1s7f" path="res://Overworld/NPCs/NPC.gd" id="1_hjev2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjev2"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gd6ay"]
+resource_local_to_scene = true
+radius = 32.0
+
+[node name="NPC" type="CharacterBody2D" unique_id=728834978]
+script = ExtResource("1_hjev2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=737236770]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1053657720]
+shape = SubResource("RectangleShape2D_hjev2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=528879770]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=657550930]
+shape = SubResource("CircleShape2D_gd6ay")
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

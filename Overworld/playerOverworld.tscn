@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://dtpiv5j0ufrcs"]
+
+[ext_resource type="Texture2D" uid="uid://b1ry6i811qcp3" path="res://Overworld/reemuh overworld.png" id="1_hpjvf"]
+[ext_resource type="Script" uid="uid://cfw8a8rp8tg86" path="res://Overworld/playerOverworld.gd" id="1_q2cw2"]
+[ext_resource type="Texture2D" uid="uid://cv1dwpfqce8dg" path="res://arclight.tres" id="3_5w56m"]
+[ext_resource type="Script" uid="uid://ds03rw2o6fn5w" path="res://Overworld/flashlight.gd" id="3_ls0qk"]
+[ext_resource type="Texture2D" uid="uid://d0xveogo3ys6g" path="res://linelight.tres" id="3_v0k1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2cw2"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls0qk"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w56m"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0k1c"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ker"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnlpn"]
+atlas = ExtResource("1_hpjvf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5w56m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2cw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls0qk")
+}],
+"loop": 1,
+"name": &"walkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w56m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0k1c")
+}],
+"loop": 1,
+"name": &"walkSide",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ker")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnlpn")
+}],
+"loop": 1,
+"name": &"walkUp",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0k1c"]
+size = Vector2(21, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5w56m"]
+radius = 14.5
+height = 40.0
+
+[sub_resource type="Gradient" id="Gradient_q2cw2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h2bco"]
+gradient = SubResource("Gradient_q2cw2")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.2, 0.2)
+metadata/_snap_enabled = true
+
+[node name="playerOverworld" type="CharacterBody2D" unique_id=219719093 groups=["player"]]
+collision_mask = 147
+script = ExtResource("1_q2cw2")
+movementSpeed = 197
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2108864583]
+sprite_frames = SubResource("SpriteFrames_5w56m")
+animation = &"walkDown"
+frame_progress = 0.32663983
+
+[node name="Solid Collision" type="CollisionShape2D" parent="." unique_id=21564146]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_v0k1c")
+
+[node name="Battle Collisions" type="Area2D" parent="." unique_id=620796243]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Battle Collisions" unique_id=787055300]
+position = Vector2(0.5, 0)
+shape = SubResource("CapsuleShape2D_5w56m")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1335192317]
+
+[node name="Interaction detector" type="RayCast2D" parent="." unique_id=500898772]
+position = Vector2(0, 3)
+target_position = Vector2(0, 26)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1074885709]
+position = Vector2(1, 0)
+texture = SubResource("GradientTexture2D_h2bco")
+
+[node name="Pivot" type="Marker2D" parent="." unique_id=1564022182]
+position = Vector2(0, 16)
+
+[node name="PointLight2D2" type="PointLight2D" parent="Pivot" unique_id=118019784 node_paths=PackedStringArray("collision")]
+position = Vector2(0, 63)
+energy = 2.0
+script = ExtResource("3_ls0qk")
+modes = Array[GradientTexture2D]([ExtResource("3_5w56m"), ExtResource("3_v0k1c")])
+collision = NodePath("../Area2D/CollisionShape2D")
+
+[node name="Area2D" type="Area2D" parent="Pivot" unique_id=934306090]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D" unique_id=571981320]
