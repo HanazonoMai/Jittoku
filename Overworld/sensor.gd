@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var maxCharge = 100
 @export var charge :float = 0
-@export var fillSpeed: float = 25
+@export var fillSpeed: float = 50
 var bodiesInZone: int = 0
 
 signal full

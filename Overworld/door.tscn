@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://mtqc0nl07ph"]
+
+[ext_resource type="Script" uid="uid://eipy0dpcvi40" path="res://Overworld/door.gd" id="1_2onei"]
+[ext_resource type="Texture2D" uid="uid://diwvfvrc5vgyb" path="res://Chest.png" id="1_feqm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
+size = Vector2(16, 16)
+
+[node name="door" type="StaticBody2D" unique_id=305306244]
+script = ExtResource("1_2onei")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641083033]
+texture = ExtResource("1_feqm8")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215971729]
+shape = SubResource("RectangleShape2D_1ptfn")

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b2r0y8jx6rwuq"]
+
+[ext_resource type="Script" uid="uid://hnusndaka1by" path="res://chargeStation.gd" id="1_1fwvy"]
+[ext_resource type="Texture2D" uid="uid://dyeiairn1u306" path="res://fairy.png" id="2_mhyvd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
+radius = 24.0
+
+[node name="chargeStation" type="StaticBody2D" unique_id=1121453722]
+collision_layer = 132
+collision_mask = 5
+script = ExtResource("1_1fwvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=265135207]
+texture = ExtResource("2_mhyvd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1232045902]
+shape = SubResource("CircleShape2D_1ptfn")

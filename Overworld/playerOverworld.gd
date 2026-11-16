@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
 @export var movementSpeed = 400
+@onready var flashlight: PointLight2D = $Pivot/Flashlight
+
+
 
 var facingDirection = Vector2.RIGHT
 #var slashScene = preload("res://Overworld/slash.tscn")
@@ -10,7 +13,7 @@ var facingDirection = Vector2.RIGHT
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray = $"Interaction detector"
 @onready var rayReach = ray.target_position.length()
-@onready var flashlight = $Pivot
+@onready var pivot = $Pivot
 
 func _physics_process(_delta: float) -> void:
 	movement()
@@ -32,7 +35,7 @@ func movement():
 	if mov != Vector2.ZERO:
 		facingDirection = mov.normalized()
 		ray.target_position = facingDirection * rayReach
-		flashlight.rotation = facingDirection.angle() - PI / 2
+		pivot.rotation = facingDirection.angle() - PI / 2
 		var animToPlay: StringName
 		if abs(mov.x) > abs(mov.y):
 			animToPlay = &"walkSide"

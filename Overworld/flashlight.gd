@@ -3,15 +3,18 @@ extends PointLight2D
 @export var modes: Array[GradientTexture2D] = []
 var maxBattery: float = 100.0
 @export var drainRate: float = 0.6
-var battery: float = 100.0
+@export var battery: float = 100.0
 var index: int = 0
 @export var collision: CollisionShape2D
+
+@export var chargeBar: ProgressBar
 
 
 
 func _ready() -> void:
-	battery = maxBattery
+	#battery = maxBattery
 	setOff()
+	chargeBar.value = battery
 	
 func _process(delta: float) -> void:
 	if battery <= 0.0:
@@ -38,3 +41,8 @@ func setOff() -> void:
 	
 func drainBattery(delta: float) -> void:
 	battery = max(0.0, battery - drainRate * delta)
+	chargeBar.value = battery
+
+func addBattery(amount: float) -> void:
+	battery = min(maxBattery, battery + amount)
+	chargeBar.value = battery
