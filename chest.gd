@@ -2,7 +2,7 @@ extends StaticBody2D
 
 @export var chestID: String = ""
 @export var gold : int = 0
-@export var item: Item
+#@export var item: Item
 @export var quantity: int = 1
 
 @onready var sprite = $Sprite2D

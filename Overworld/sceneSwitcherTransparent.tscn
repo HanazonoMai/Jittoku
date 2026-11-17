@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvh30xtsa3ep0"]
+[gd_scene format=3 uid="uid://dvh30xtsa3ep0"]
 
 [ext_resource type="Script" uid="uid://go03p1uwmr6r" path="res://Overworld/sceneSwitcherNoParticles.gd" id="1_vdtrj"]
 [ext_resource type="Script" uid="uid://b4pbhy7gxrn3h" path="res://Overworld/sceneSwitcherArea.gd" id="2_t5h4u"]
 [ext_resource type="Script" uid="uid://vhscy7wlwkno" path="res://Overworld/sizeMatch.gd" id="3_vqg8w"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u400"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdtrj"]
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[node name="sceneSwitcherTransparent" type="NinePatchRect"]
+[node name="sceneSwitcherTransparent" type="NinePatchRect" unique_id=2104636675]
 texture_repeat = 2
 custom_minimum_size = Vector2(32, 32)
 offset_right = 32.0
@@ -17,12 +17,12 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("1_vdtrj")
 
-[node name="sceneSwitcher" type="Area2D" parent="."]
+[node name="sceneSwitcher" type="Area2D" parent="." unique_id=1018961267]
 script = ExtResource("2_t5h4u")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitcher"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sceneSwitcher" unique_id=1425652190]
 position = Vector2(16, 16)
-shape = SubResource("RectangleShape2D_0u400")
+shape = SubResource("RectangleShape2D_vdtrj")
 script = ExtResource("3_vqg8w")
 
 [connection signal="body_entered" from="sceneSwitcher" to="sceneSwitcher" method="_on_body_entered"]

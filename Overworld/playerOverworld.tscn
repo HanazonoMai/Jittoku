@@ -90,7 +90,7 @@ bg_color = Color(0, 0.35, 0.08166667, 1)
 [node name="playerOverworld" type="CharacterBody2D" unique_id=219719093 groups=["player"]]
 collision_mask = 147
 script = ExtResource("1_q2cw2")
-movementSpeed = 195
+movementSpeed = 190
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2108864583]
 sprite_frames = SubResource("SpriteFrames_5w56m")

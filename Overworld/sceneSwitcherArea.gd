@@ -3,7 +3,9 @@ extends Area2D
 var target: String
 var spawnPoint: String = ""
 
-func _on_body_entered(_body: CharacterBody2D) -> void:
+func _on_body_entered(_body) -> void:
+	if _body != CharacterBody2D:
+		return
 	var packedScene = load(target)
 	var newScene = packedScene.instantiate()
 
