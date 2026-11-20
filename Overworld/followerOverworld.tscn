@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dhkf53v83203u"]
+
+[ext_resource type="Script" uid="uid://cmu5qege5ngnw" path="res://Overworld/followerOverworld.gd" id="1_qusbt"]
+[ext_resource type="Texture2D" uid="uid://b1ry6i811qcp3" path="res://Overworld/reemuh overworld.png" id="1_vg5ps"]
+[ext_resource type="PackedScene" uid="uid://dhsra6h0aaddq" path="res://Overworld/footstepPlayer.tscn" id="3_xo8iq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2cw2"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls0qk"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w56m"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0k1c"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ker"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnlpn"]
+atlas = ExtResource("1_vg5ps")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qusbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2cw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls0qk")
+}],
+"loop": 1,
+"name": &"walkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w56m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0k1c")
+}],
+"loop": 1,
+"name": &"walkSide",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ker")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnlpn")
+}],
+"loop": 1,
+"name": &"walkUp",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xo8iq"]
+size = Vector2(21, 30)
+
+[node name="FollowerOverworld" type="CharacterBody2D" unique_id=358328482]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qusbt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1637017794]
+sprite_frames = SubResource("SpriteFrames_qusbt")
+animation = &"walkSide"
+
+[node name="Solid Collision" type="CollisionShape2D" parent="." unique_id=793919339]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_xo8iq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1236722870]
+
+[node name="Interaction detector" type="RayCast2D" parent="." unique_id=1984643067]
+position = Vector2(0, 3)
+target_position = Vector2(0, 26)
+collision_mask = 4
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1660952217]
+
+[node name="Footsteps" parent="Sounds" unique_id=1531425362 instance=ExtResource("3_xo8iq")]

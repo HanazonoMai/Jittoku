@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerOverworld
 
 @export var movementSpeed = 400
 @onready var flashlight: PointLight2D = $Pivot/Flashlight
