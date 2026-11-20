@@ -32,6 +32,12 @@ func _process(delta: float) -> void:
 	else:
 		setOff()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("spray") or event.is_action_pressed("focused"):
+		$SoundOn.play()
+	elif event.is_action_released("spray") or event.is_action_released("focused"):
+		$SoundOff.play()
+
 func setMode(newIndex: int) -> void:
 	texture = modes[newIndex]
 
