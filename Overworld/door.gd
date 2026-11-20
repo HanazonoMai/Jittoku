@@ -8,3 +8,4 @@ func _onFull():
 	if counter == toUnlock:
 		$Sprite2D.frame = 1
 		$CollisionShape2D.disabled = true
+		$SoundUnlock.play()

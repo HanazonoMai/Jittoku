@@ -15,3 +15,5 @@ hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=215971729]
 shape = SubResource("RectangleShape2D_1ptfn")
+
+[node name="SoundUnlock" type="AudioStreamPlayer2D" parent="." unique_id=925381723]

@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 func _onAreaEntered(_body: Node2D) -> void:
 	bodiesInZone += 1
 	print("Entered. Bodies in zone: ", bodiesInZone)
+	$SoundActivate.play()
 func _onAreaExited(_body: Node2D) -> void:
 	bodiesInZone = max(0, bodiesInZone - 1)
 	print("Exited. Bodies in zone: ", bodiesInZone)
