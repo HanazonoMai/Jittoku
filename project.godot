@@ -46,8 +46,17 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"doremy": "res://doremy.dch",
+"eiki": "res://eiki.dch",
+"merry": "res://merry.dch",
+"nue": "res://nue.dch",
+"renko": "res://renko.dch",
+"unknown": "res://unknown.dch",
+"yukari": "res://yukari.dch"
+}
 directories/dtl_directory={
+"opening": "res://opening.dtl",
 "testline": "res://testline.dtl"
 }
 layout/style_directory={}
