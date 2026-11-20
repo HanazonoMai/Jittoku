@@ -24,3 +24,7 @@ func _onAreaEntered(_body: Node2D) -> void:
 func _onAreaExited(_body: Node2D) -> void:
 	bodiesInZone = max(0, bodiesInZone - 1)
 	print("Exited. Bodies in zone: ", bodiesInZone)
+
+
+func unload():
+	charge = 0

@@ -88,6 +88,7 @@ sources/0 = SubResource("TileSetAtlasSource_riv4e")
 script = ExtResource("1_3ej4y")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
+visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
 
 [node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("3_u7ns6")]
