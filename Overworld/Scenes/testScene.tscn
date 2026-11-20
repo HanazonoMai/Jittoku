@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://p2ufics87t0d"]
 
 [ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_3ej4y"]
+[ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="3_u7ns6"]
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="10_bxlvk"]
 [ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="10_jrgk4"]
 [ext_resource type="PackedScene" uid="uid://b2r0y8jx6rwuq" path="res://Overworld/chargeStation.tscn" id="11_jrgk4"]
@@ -89,6 +90,9 @@ script = ExtResource("1_3ej4y")
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
 visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
+
+[node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("3_u7ns6")]
+position = Vector2(488, 272)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
 z_index = -16

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cn2albqnn8oef"]
-
-[ext_resource type="Script" uid="uid://dvgqocyvmnf1u" path="res://Singletons/game.gd" id="1_ganwm"]
-
-[node name="Game" type="Node" unique_id=2126279779]
-script = ExtResource("1_ganwm")

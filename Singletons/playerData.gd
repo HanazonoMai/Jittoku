@@ -130,7 +130,7 @@ func saveGame(path := "user://save.json"):
 			ResourceSaver.save(copy, unitPath)
 			unit.resource_path = unitPath
 
-	var player = Game.player
+	var player = get_tree().get_nodes_in_group("player")[0]
 	self.collectData(player)
 	
 	var saveDict = self.toDict()
