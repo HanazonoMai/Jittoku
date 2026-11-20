@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var chargeRate: float = .5
-@onready var player = $"../playerOverworld"
+@onready var player = Game.player
 
 var isCharging: bool = false
 

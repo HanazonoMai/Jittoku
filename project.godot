@@ -43,6 +43,8 @@ AudioManager="*res://Singletons/audioManager.gd"
 KeyManager="*res://Singletons/keyManager.gd"
 PlayerData="*res://Singletons/playerData.gd"
 Dialogic="*uid://ds2q0uclmolvu"
+MetSys="*uid://c01ibpvrp2wsd"
+Game="*uid://cn2albqnn8oef"
 
 [dialogic]
 
@@ -62,7 +64,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
+enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/dialogic/plugin.cfg")
 
 [input]
 
