@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0xveogo3ys6g" path="res://linelight.tres" id="3_v0k1c"]
 [ext_resource type="AudioStream" uid="uid://d31bdr86142n4" path="res://Sound/RPG Sound Pack/interface/interface1.wav" id="6_lnlpn"]
 [ext_resource type="AudioStream" uid="uid://bglaf67q7wcj" path="res://Sound/RPG Sound Pack/interface/interface6.wav" id="7_m5cj3"]
+[ext_resource type="PackedScene" uid="uid://dhsra6h0aaddq" path="res://Overworld/footstepPlayer.tscn" id="8_m5cj3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2cw2"]
 atlas = ExtResource("1_hpjvf")
@@ -138,6 +139,10 @@ collision_layer = 2048
 collision_mask = 2048
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Area2D" unique_id=571981320]
+
+[node name="Sounds" type="Node2D" parent="." unique_id=1725159982]
+
+[node name="Footsteps" parent="Sounds" unique_id=1531425362 instance=ExtResource("8_m5cj3")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2040904867]
 

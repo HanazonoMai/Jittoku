@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dhsra6h0aaddq"]
+
+[ext_resource type="AudioStream" uid="uid://bq3ee2fq4s6o4" path="res://Sound/footstepsRandom.tres" id="1_eyi18"]
+
+[sub_resource type="GDScript" id="GDScript_ukoxt"]
+script/source = "extends AudioStreamPlayer2D
+
+@export var step_interval : float = 0.5
+@onready var timer = $Timer
+
+func _ready() -> void:
+	timer.wait_time = step_interval
+
+func play_step():
+	if timer.is_stopped():
+		play()
+		timer.start()
+"
+
+[node name="Footsteps" type="AudioStreamPlayer2D" unique_id=1531425362]
+stream = ExtResource("1_eyi18")
+script = SubResource("GDScript_ukoxt")
+step_interval = 0.33
+
+[node name="Timer" type="Timer" parent="." unique_id=413860226]
+process_mode = 1
+one_shot = true

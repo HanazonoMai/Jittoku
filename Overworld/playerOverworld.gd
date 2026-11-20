@@ -47,6 +47,7 @@ func movement():
 		if anim.animation != animToPlay or not anim.is_playing():
 			anim.play(animToPlay)
 			anim.frame = 1
+		$Sounds/Footsteps.play_step()
 	else:
 		anim.frame = 0
 		anim.stop()

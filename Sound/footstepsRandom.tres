@@ -1,0 +1,10 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://bq3ee2fq4s6o4"]
+
+[ext_resource type="AudioStream" uid="uid://b2hdfc1kld4qm" path="res://Sound/Fantasy Sound Library/Mp3/Footsteps/Footstep_Dirt_00.mp3" id="1_gxyge"]
+[ext_resource type="AudioStream" uid="uid://dnqckv5ciceuy" path="res://Sound/Fantasy Sound Library/Mp3/Footsteps/Footstep_Dirt_01.mp3" id="2_ex0uw"]
+
+[resource]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("1_gxyge")
+stream_1/stream = ExtResource("2_ex0uw")
