@@ -1,46 +1,72 @@
 [gd_scene format=3 uid="uid://dtpiv5j0ufrcs"]
 
-[ext_resource type="Texture2D" uid="uid://b1ry6i811qcp3" path="res://Overworld/reemuh overworld.png" id="1_hpjvf"]
 [ext_resource type="Script" uid="uid://cfw8a8rp8tg86" path="res://Overworld/playerOverworld.gd" id="1_q2cw2"]
+[ext_resource type="Texture2D" uid="uid://dne08u4hnyh52" path="res://Overworld/Renko/nurenko_normal_overworld.png" id="2_m5cj3"]
 [ext_resource type="Texture2D" uid="uid://cv1dwpfqce8dg" path="res://arclight.tres" id="3_5w56m"]
 [ext_resource type="Script" uid="uid://ds03rw2o6fn5w" path="res://Overworld/flashlight.gd" id="3_ls0qk"]
 [ext_resource type="Texture2D" uid="uid://d0xveogo3ys6g" path="res://linelight.tres" id="3_v0k1c"]
-[ext_resource type="AudioStream" uid="uid://d31bdr86142n4" path="res://Sound/RPG Sound Pack/interface/interface1.wav" id="6_lnlpn"]
-[ext_resource type="AudioStream" uid="uid://bglaf67q7wcj" path="res://Sound/RPG Sound Pack/interface/interface6.wav" id="7_m5cj3"]
+[ext_resource type="AudioStream" uid="uid://4k2mbgsppx7a" path="res://Sound/click on.ogg" id="6_m5cj3"]
+[ext_resource type="AudioStream" uid="uid://b7dd0pw4h6vrd" path="res://Sound/click off.ogg" id="7_crdqf"]
 [ext_resource type="PackedScene" uid="uid://dhsra6h0aaddq" path="res://Overworld/footstepPlayer.tscn" id="8_m5cj3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2cw2"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_crdqf"]
+atlas = ExtResource("2_m5cj3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooubi"]
+atlas = ExtResource("2_m5cj3")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x6gh"]
+atlas = ExtResource("2_m5cj3")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kko5x"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ls0qk"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mt2q"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5w56m"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hewi"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(128, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0k1c"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwj64"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h7ker"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdni7"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lnlpn"]
-atlas = ExtResource("1_hpjvf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuoc8"]
+atlas = ExtResource("2_m5cj3")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5w56m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2cw2")
+"texture": SubResource("AtlasTexture_crdqf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ls0qk")
+"texture": SubResource("AtlasTexture_ooubi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x6gh")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kko5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mt2q")
 }],
 "loop": 1,
 "name": &"walkDown",
@@ -48,10 +74,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5w56m")
+"texture": SubResource("AtlasTexture_3hewi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v0k1c")
+"texture": SubResource("AtlasTexture_jwj64")
 }],
 "loop": 1,
 "name": &"walkSide",
@@ -59,10 +85,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h7ker")
+"texture": SubResource("AtlasTexture_kdni7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lnlpn")
+"texture": SubResource("AtlasTexture_iuoc8")
 }],
 "loop": 1,
 "name": &"walkUp",
@@ -70,7 +96,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0k1c"]
-size = Vector2(21, 30)
+size = Vector2(42, 58)
 
 [sub_resource type="Gradient" id="Gradient_q2cw2"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -97,18 +123,19 @@ movementSpeed = 190
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2108864583]
 y_sort_enabled = true
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_5w56m")
-animation = &"walkDown"
+animation = &"idle"
 
 [node name="Solid Collision" type="CollisionShape2D" parent="." unique_id=21564146]
-position = Vector2(0.5, 0)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_v0k1c")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1335192317]
 
 [node name="Interaction detector" type="RayCast2D" parent="." unique_id=500898772]
 position = Vector2(0, 3)
-target_position = Vector2(0, 26)
+target_position = Vector2(0, 41)
 collision_mask = 4
 hit_from_inside = true
 collide_with_areas = true
@@ -130,10 +157,10 @@ collision = NodePath("../Area2D/CollisionShape2D")
 chargeBar = NodePath("../../CanvasLayer/ProgressBar")
 
 [node name="SoundOn" type="AudioStreamPlayer2D" parent="Pivot/Flashlight" unique_id=1273011744]
-stream = ExtResource("6_lnlpn")
+stream = ExtResource("6_m5cj3")
 
 [node name="SoundOff" type="AudioStreamPlayer2D" parent="Pivot/Flashlight" unique_id=607339699]
-stream = ExtResource("7_m5cj3")
+stream = ExtResource("7_crdqf")
 
 [node name="Area2D" type="Area2D" parent="Pivot" unique_id=934306090]
 collision_layer = 2048

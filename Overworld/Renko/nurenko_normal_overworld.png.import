@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv7ybl2ijlqn6"
-path="res://.godot/imported/Kanan-chan.png-df5c72e04ce9c9e18705bd51fb7ee0e4.ctex"
+uid="uid://dne08u4hnyh52"
+path="res://.godot/imported/nurenko_normal_overworld.png-fcff4c3df42d474d4f05c93e95f2322d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Kanan-chan.png"
-dest_files=["res://.godot/imported/Kanan-chan.png-df5c72e04ce9c9e18705bd51fb7ee0e4.ctex"]
+source_file="res://Overworld/Renko/nurenko_normal_overworld.png"
+dest_files=["res://.godot/imported/nurenko_normal_overworld.png-fcff4c3df42d474d4f05c93e95f2322d.ctex"]
 
 [params]
 

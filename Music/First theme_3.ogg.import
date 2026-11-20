@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ba2hmkbsel372"
+path="res://.godot/imported/First theme_3.ogg-e43cdc7ba59854e7c6f9d58f7bfb70ac.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/First theme_3.ogg"
+dest_files=["res://.godot/imported/First theme_3.ogg-e43cdc7ba59854e7c6f9d58f7bfb70ac.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

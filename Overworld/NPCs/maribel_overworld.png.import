@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvuc5hdq60l4u"
-path="res://.godot/imported/forest town.png-e641746a62bfa1694b5c206dfc0762eb.ctex"
+uid="uid://bck5w2mfha48i"
+path="res://.godot/imported/maribel_overworld.png-7b5b0b166f49f44c72b23b8dcd645c89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Overworld/Tilesets/forest town.png"
-dest_files=["res://.godot/imported/forest town.png-e641746a62bfa1694b5c206dfc0762eb.ctex"]
+source_file="res://Overworld/NPCs/maribel_overworld.png"
+dest_files=["res://.godot/imported/maribel_overworld.png-7b5b0b166f49f44c72b23b8dcd645c89.ctex"]
 
 [params]
 

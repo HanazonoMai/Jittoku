@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh73xl7mo6vla"
-path="res://.godot/imported/Mayumi_Broken_Face 25.png-9b90e078d8874c37b23491c82e6fa6f0.ctex"
+uid="uid://dwsqkajhl7ot"
+path="res://.godot/imported/battery_empty.png-01595ee4151e5c70067fde5f5de2f3f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Mayumi_Broken_Face 25.png"
-dest_files=["res://.godot/imported/Mayumi_Broken_Face 25.png-9b90e078d8874c37b23491c82e6fa6f0.ctex"]
+source_file="res://UI/battery_empty.png"
+dest_files=["res://.godot/imported/battery_empty.png-01595ee4151e5c70067fde5f5de2f3f1.ctex"]
 
 [params]
 
