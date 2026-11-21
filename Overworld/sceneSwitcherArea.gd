@@ -4,7 +4,7 @@ var target: String
 var spawnPoint: String = ""
 
 func _on_body_entered(_body) -> void:
-	if _body != CharacterBody2D:
+	if not (_body is PlayerOverworld):
 		return
 	var packedScene = load(target)
 	var newScene = packedScene.instantiate()
