@@ -131,7 +131,7 @@ func _onInnerEntered(_body: Node2D) -> void:
 				monitored_follower.independent_movement_position_reached.connect(_on_follower_inside_the_gap)
 
 func _on_follower_inside_the_gap() -> void:
-	teleport(monitored_follower, teleport_target.position)
+	monitored_follower.global_position = teleport_target.global_position
 	print("teleporting Merry")
 	monitored_follower.independent_movement_position_reached.disconnect(_on_follower_inside_the_gap)
 	monitored_follower.reunite_with_leader()
