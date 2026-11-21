@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://eipy0dpcvi40" path="res://Overworld/door.gd" id="1_2onei"]
 [ext_resource type="Texture2D" uid="uid://diwvfvrc5vgyb" path="res://Chest.png" id="1_feqm8"]
+[ext_resource type="AudioStream" uid="uid://ra78qekqc18p" path="res://Sound/good sound.ogg" id="3_xav2p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
 size = Vector2(16, 16)
@@ -17,3 +18,5 @@ hframes = 2
 shape = SubResource("RectangleShape2D_1ptfn")
 
 [node name="SoundUnlock" type="AudioStreamPlayer2D" parent="." unique_id=925381723]
+stream = ExtResource("3_xav2p")
+volume_db = 9.0

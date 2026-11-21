@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dr6wnmpn8lbjb"]
+
+[ext_resource type="Texture2D" uid="uid://b1ry6i811qcp3" path="res://Overworld/reemuh overworld.png" id="1_c5kn6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2cw2"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls0qk"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w56m"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0k1c"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ker"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnlpn"]
+atlas = ExtResource("1_c5kn6")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2cw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls0qk")
+}],
+"loop": 1,
+"name": &"walkDown",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w56m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0k1c")
+}],
+"loop": 1,
+"name": &"walkSide",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ker")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnlpn")
+}],
+"loop": 1,
+"name": &"walkUp",
+"speed": 8.0
+}]

@@ -78,6 +78,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[global_group]
+
+Follower=""
+
 [input]
 
 up={
@@ -164,3 +168,4 @@ focused={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.02745098, 0.003921569, 0.03529412, 1)

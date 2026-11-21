@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://co3tpkk01o00t"]
+
+[ext_resource type="Script" uid="uid://bi5lahowmw85p" path="res://Overworld/gap.gd" id="1_dumoa"]
+[ext_resource type="Texture2D" uid="uid://bqn5n42imo8w8" path="res://Overworld/gap.png" id="2_gxb0u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
+radius = 22.090721
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p3vtu"]
+resource_local_to_scene = true
+radius = 34.0147
+
+[sub_resource type="Gradient" id="Gradient_7dht3"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1ptfn"]
+gradient = SubResource("Gradient_7dht3")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.90000004, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dumoa"]
+light_mode = 1
+
+[node name="gap" type="Area2D" unique_id=1560568519]
+collision_layer = 128
+script = ExtResource("1_dumoa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809846294]
+shape = SubResource("CircleShape2D_1ptfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=204687708]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+texture = ExtResource("2_gxb0u")
+
+[node name="Outer" type="Area2D" parent="." unique_id=958025414]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outer" unique_id=439805129]
+shape = SubResource("CircleShape2D_p3vtu")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1066277709]
+position = Vector2(3, 8)
+scale = Vector2(2.70495, 2.70495)
+color = Color(1, 0, 0, 1)
+energy = 0.75
+texture = SubResource("GradientTexture2D_1ptfn")
+
+[node name="SoundActivate" type="AudioStreamPlayer2D" parent="." unique_id=445049637]
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1187883714]
+material = SubResource("CanvasItemMaterial_dumoa")
+emitting = false
+amount = 32
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(1, 0, 0, 1)
+
+[node name="Sounds" type="Node2D" parent="." unique_id=16667626]
+
+[node name="Open" type="AudioStreamPlayer2D" parent="Sounds" unique_id=446769743]
+
+[node name="Close" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1110832615]
+
+[node name="Flee" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1540803979]
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1437128921]
+
+[connection signal="body_entered" from="." to="." method="_onInnerEntered"]
+[connection signal="area_entered" from="Outer" to="." method="_onOuterEntered"]
+[connection signal="area_exited" from="Outer" to="." method="_onOuterExited"]

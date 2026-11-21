@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name FollowerOverworld
 
+signal independent_movement_position_reached
+
 @export var leader: PlayerOverworld = null
 @export var follow_distance: float = 40.0 #The normal distance between the leader and the follower during walk, in pixels
 @export var distance_to_leader: float = 20.0 #The distance to the leader when stopped
@@ -15,6 +17,8 @@ var relativePositionOfLeader : Vector2
 var currentDistanceToLeader: float
 var leaderVelocity: Vector2
 var cardinalDirection = Vector2.RIGHT
+var moving_independently: bool = false
+var independant_movement_target: Vector2 = Vector2.ZERO
 
 func _physics_process(_delta: float) -> void:
 	check_leader_movement()
@@ -28,12 +32,15 @@ func check_leader_movement() -> void:
 
 func movement():
 	var mov = Vector2.ZERO
-	if leaderVelocity.is_equal_approx(Vector2.ZERO):
-		if currentDistanceToLeader > distance_to_leader:
-			mov = relativePositionOfLeader
+	if moving_independently == false:
+		if leaderVelocity.is_equal_approx(Vector2.ZERO):
+			if currentDistanceToLeader > distance_to_leader:
+				mov = relativePositionOfLeader
+		else:
+			if currentDistanceToLeader >= follow_distance:
+				mov = relativePositionOfLeader
 	else:
-		if currentDistanceToLeader >= follow_distance:
-			mov = relativePositionOfLeader
+		mov = move_to(independant_movement_target)
 	var animToPlay: StringName
 	if mov != Vector2.ZERO:
 		facingDirection = mov.normalized()
@@ -78,3 +85,27 @@ func movement():
 	
 	velocity = mov.normalized()*movementSpeed
 	move_and_slide()
+
+func set_leader(new_leader: PlayerOverworld):
+	leader = new_leader
+	leader.follower = self
+	PlayerData.followed_by_merry = true
+
+func leave_leader() -> void:
+	leader.follower = null
+	leader = null
+	PlayerData.followed_by_merry = false
+
+func set_independent_movement_target(movement_target: Vector2) -> void:
+	moving_independently = true
+	independant_movement_target = movement_target
+
+func move_to(new_position: Vector2, epsilon = 5.0) -> Vector2:
+	moving_independently = true
+	var trajectory = new_position - global_position
+	if trajectory.length() <= epsilon:
+		independent_movement_position_reached.emit()
+	return trajectory
+
+func reunite_with_leader():
+	moving_independently = false
