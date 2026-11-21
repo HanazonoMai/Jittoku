@@ -66,7 +66,6 @@ script = ExtResource("1_qs1jk")
 music = ExtResource("2_o7j7g")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
-visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
@@ -92,7 +91,7 @@ offset_left = 1795.0
 offset_top = 57.0
 offset_right = 1984.0
 offset_bottom = 125.0
-target = "uid://bh6m1emad843"
+target = "uid://b6t7oi3iurkn3"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_kofht")]
 position = Vector2(1887, 226)
