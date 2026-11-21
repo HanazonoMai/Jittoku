@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bh6m1emad843"]
 
 [ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_qqwc8"]
-[ext_resource type="AudioStream" uid="uid://ba2hmkbsel372" path="res://Music/First theme_3.ogg" id="2_3vokh"]
 [ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="3_rshy0"]
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="4_jp51d"]
 [ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="5_dpa1o"]
@@ -61,10 +60,8 @@ sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_qqwc8")
-music = ExtResource("2_3vokh")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
-visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
@@ -89,7 +86,7 @@ offset_left = 1088.0
 offset_top = 336.0
 offset_right = 1152.0
 offset_bottom = 400.0
-target = "uid://bh6m1emad843"
+target = "uid://c6bgm5n6bf4jw"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_pbgci")]
 position = Vector2(1120, 416)

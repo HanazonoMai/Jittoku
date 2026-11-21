@@ -7,8 +7,7 @@ class_name PlayerOverworld
 
 
 var facingDirection = Vector2.RIGHT
-#var slashScene = preload("res://Overworld/slash.tscn")
-#var pauseMenu = preload("res://UI/pauseMenu.tscn")
+
 
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D

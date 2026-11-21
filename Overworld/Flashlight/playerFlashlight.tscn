@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bnphs4bydjvpd"]
 
 [ext_resource type="Script" uid="uid://b5woegtfr1nsp" path="res://Overworld/Flashlight/player_flashlight.gd" id="1_rxv40"]
-[ext_resource type="AudioStream" uid="uid://d31bdr86142n4" path="res://Sound/RPG Sound Pack/interface/interface1.wav" id="2_xfikj"]
-[ext_resource type="AudioStream" uid="uid://bglaf67q7wcj" path="res://Sound/RPG Sound Pack/interface/interface6.wav" id="3_0cb63"]
+[ext_resource type="AudioStream" uid="uid://4k2mbgsppx7a" path="res://Sound/click on.ogg" id="2_xfikj"]
+[ext_resource type="AudioStream" uid="uid://b7dd0pw4h6vrd" path="res://Sound/click off.ogg" id="3_0cb63"]
 
 [node name="playerFlashlight" type="Node2D" unique_id=764475660]
 script = ExtResource("1_rxv40")
