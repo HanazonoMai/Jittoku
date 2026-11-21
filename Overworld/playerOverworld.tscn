@@ -164,9 +164,11 @@ chargeBar = NodePath("../../CanvasLayer/ProgressBar")
 
 [node name="SoundOn" type="AudioStreamPlayer2D" parent="Pivot/Flashlight" unique_id=1273011744]
 stream = ExtResource("6_m5cj3")
+bus = &"SFX"
 
 [node name="SoundOff" type="AudioStreamPlayer2D" parent="Pivot/Flashlight" unique_id=607339699]
 stream = ExtResource("7_crdqf")
+bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="Pivot" unique_id=934306090]
 collision_layer = 2048

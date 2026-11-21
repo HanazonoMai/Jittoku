@@ -45,6 +45,7 @@ visible = false
 texture = SubResource("GradientTexture2D_1ptfn")
 
 [node name="SoundActivate" type="AudioStreamPlayer2D" parent="." unique_id=445049637]
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_onAreaEntered"]
 [connection signal="area_exited" from="Area2D" to="." method="_onAreaExited"]

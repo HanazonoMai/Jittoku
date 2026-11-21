@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://hnusndaka1by" path="res://chargeStation.gd" id="1_1fwvy"]
 [ext_resource type="Texture2D" uid="uid://dyeiairn1u306" path="res://fairy.png" id="2_mhyvd"]
+[ext_resource type="AudioStream" uid="uid://d3v8x5wviavwh" path="res://Sound/hum.ogg" id="3_mhyvd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
 radius = 24.0
@@ -18,4 +19,8 @@ texture = ExtResource("2_mhyvd")
 shape = SubResource("CircleShape2D_1ptfn")
 
 [node name="SoundHum" type="AudioStreamPlayer2D" parent="." unique_id=291843938]
+stream = ExtResource("3_mhyvd")
+volume_db = 5.85
 autoplay = true
+max_distance = 256.0
+bus = &"SFX"
