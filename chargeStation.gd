@@ -11,6 +11,9 @@ func interact() -> void:
 	isCharging = true
 
 func _process(delta: float) -> void:
+	player = get_node_or_null("../playerOverworld")
+	if player == null:
+		return
 	if isCharging:
 		if not Input.is_action_pressed("accept") or global_position.distance_to(player.global_position) > maxChargeDistance:
 			isCharging = false
