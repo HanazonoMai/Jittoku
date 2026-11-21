@@ -7,11 +7,11 @@ extends NinePatchRect
 
 
 func start():
-	print("Starting scene")
 	if dialogueName == "" or cutsceneID == "":
 		return
 	if KeyManager.hasCutscenePlayed(cutsceneID):
 		return
+	print("Starting scene ", cutsceneID)
 	Dialogic.start(dialogueName)
 	KeyManager.setCutscene(cutsceneID)
 	
