@@ -47,6 +47,7 @@ Dialogic="*uid://ds2q0uclmolvu"
 [dialogic]
 
 directories/dch_directory={
+"MeetingEiki": "res://MeetingEiki.dch",
 "doremy": "res://doremy.dch",
 "eiki": "res://eiki.dch",
 "merry": "res://merry.dch",
@@ -56,6 +57,10 @@ directories/dch_directory={
 "yukari": "res://yukari.dch"
 }
 directories/dtl_directory={
+"MeetingDoremy": "res://MeetingDoremy.dtl",
+"MeetingEiki": "res://MeetingEiki.dtl",
+"MerryTaken": "res://MerryTaken.dtl",
+"NueTalk": "res://NueTalk.dtl",
 "opening": "res://opening.dtl",
 "testline": "res://testline.dtl"
 }
