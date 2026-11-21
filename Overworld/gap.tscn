@@ -60,6 +60,16 @@ scale_amount_min = 3.0
 scale_amount_max = 3.0
 color = Color(1, 0, 0, 1)
 
+[node name="Sounds" type="Node2D" parent="." unique_id=16667626]
+
+[node name="Open" type="AudioStreamPlayer2D" parent="Sounds" unique_id=446769743]
+
+[node name="Close" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1110832615]
+
+[node name="Flee" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1540803979]
+
+[node name="Teleport" type="AudioStreamPlayer2D" parent="Sounds" unique_id=1437128921]
+
 [connection signal="body_entered" from="." to="." method="_onInnerEntered"]
 [connection signal="area_entered" from="Outer" to="." method="_onOuterEntered"]
 [connection signal="area_exited" from="Outer" to="." method="_onOuterExited"]

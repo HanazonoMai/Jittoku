@@ -3,8 +3,9 @@ class_name Gap
 
 @export var open := true:
 	set(value):
+		var changed := open != value
 		open = value
-		set_state()
+		refresh_state(changed)
 
 @export var teleport_target : Node
 
@@ -24,7 +25,7 @@ var bodiesInZone: int = 0
 
 func _ready():
 	original_position = position
-	set_state()
+	refresh_state(false)
 
 func _process(delta: float) -> void:
 	if sleep_time > 0.0:
@@ -42,16 +43,20 @@ func _process(delta: float) -> void:
 		flee()
 		#$PointLight2D.visible = true
 
-func set_state():
+func refresh_state(changed := true):
 	if open:
+		if changed:
+			$Sounds/Open.play()
 		$Sprite2D.show()
 		$PointLight2D.show()
 	else:
+		if changed:
+			$Sounds/Close.play()
 		$Sprite2D.hide()
 		$PointLight2D.hide()
 
 ## turn off teleportation without closing
-func sleep(how_long := 3.0):
+func sleep(how_long := 1.5):
 	sleep_time = how_long
 
 func is_sleeping():
@@ -77,6 +82,7 @@ func flee_hide(how_long := -1.0):
 func move(to : Vector2):
 	open = false
 	$Particles.emitting = true
+	$Sounds/Flee.play()
 	var tween = create_tween()
 	tween.tween_property(self, "position", to, 0.5).set_ease(Tween.EASE_OUT)
 	await tween.finished
@@ -87,12 +93,18 @@ func teleport(character : Node2D, to : Vector2):
 	sleep()
 	var temp_original_position = position
 	open = false
+	character.set_process(false)
+	character.hide()
 	$Particles.emitting = true
+	$Sounds/Teleport.play()
 	var tween = create_tween()
 	tween.tween_property(self, "position", to, 0.5).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(character, "position", to, 0.5).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	$Particles.emitting = false
 	character.position = to
+	character.show()
+	character.set_process(true)
 	position = temp_original_position
 	open = true
 
