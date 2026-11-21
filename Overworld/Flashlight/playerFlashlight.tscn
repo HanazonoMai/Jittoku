@@ -6,7 +6,14 @@
 
 [node name="playerFlashlight" type="Node2D" unique_id=764475660]
 script = ExtResource("1_rxv40")
-focus_mode_angle = 10.0001
+light_source_width = 6.0
+spread_mode_range = 128.0
+spread_mode_falloff = 0.5
+spread_mode_angular_falloff = 0.5
+focus_mode_range = 256.0
+focus_mode_angle = 15.0001
+focus_mode_falloff = 0.5
+focus_mode_angular_falloff = 0.5
 
 [node name="SpreadLight" type="PointLight2D" parent="." unique_id=912847977]
 enabled = false

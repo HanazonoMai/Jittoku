@@ -10,6 +10,11 @@ var currentParty = []
 var gold : int
 var totalPlaytime: float = 0.0
 
+var player_spawn_handled_by_scene_switcher: bool = false
+var followed_by_merry: bool = true
+var max_flashlight_battery: float = 100.0
+var flashlight_battery: float = 100.0
+
 func _process(delta: float) -> void:
 	totalPlaytime += delta
 
@@ -169,3 +174,7 @@ func autoSave():
 
 func autoLoad():
 	loadGame("user://autosave.json")
+
+
+func set_flashlight_battery(battery_level: float) -> void:
+	flashlight_battery = battery_level

@@ -2,18 +2,33 @@ extends CharacterBody2D
 class_name PlayerOverworld
 
 @export var movementSpeed = 400
+@export var is_followed_by_merry: bool = false
 @onready var flashlight: PointLight2D = $Pivot/Flashlight
 
 
 
 var facingDirection = Vector2.RIGHT
-
+var merry_scene = preload("res://Overworld/followerOverworld.tscn")
 
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray = $"Interaction detector"
 @onready var rayReach = ray.target_position.length()
 @onready var pivot = $Pivot
+var follower: FollowerOverworld = null
+
+func _ready() -> void:
+	# Checks if followed by Merry
+	if PlayerData.followed_by_merry == true:
+		print("Maribel inspection")
+		#Instantiate Merry
+		var merry = merry_scene.instantiate()
+		get_tree().current_scene.add_child.call_deferred(merry)
+		merry.set_leader(self)
+		merry.position = position
+		follower = merry
+	pass
+	
 
 func _physics_process(_delta: float) -> void:
 	movement()
@@ -54,3 +69,8 @@ func movement():
 	
 	velocity = mov.normalized()*movementSpeed
 	move_and_slide()
+
+func transfer_global_position(new_global_position) -> void:
+	global_position = new_global_position
+	if follower != null:
+		follower.global_position = global_position

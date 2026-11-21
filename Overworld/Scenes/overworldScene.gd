@@ -2,13 +2,14 @@ extends Node2D
 
 @export var music : AudioStream
 #@export var path : String
+var playerScene = preload("res://Overworld/playerOverworld.tscn")
 
 func _ready():
 	add_to_group("stage")
-	if not has_node("playerOverworld"):
-		var playerScene = load("res://Overworld/playerOverworld.tscn")
+	if not has_node("playerOverworld") and PlayerData.player_spawn_handled_by_scene_switcher == false:
 		var player = playerScene.instantiate()
 		add_child(player)
+		player.transfer_global_position($spawnPoint.global_position)
 	if music:
 		AudioManager.playMusic(music, false, true)
 	PlayerData.location = scene_file_path

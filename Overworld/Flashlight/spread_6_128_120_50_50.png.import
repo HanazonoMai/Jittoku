@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpbiurfxig2mq"
-path="res://.godot/imported/spread_3_64_120_0_0.png-2a43930bd31ad4d50e636b62ed92588f.ctex"
+uid="uid://cpqc54ja3ydho"
+path="res://.godot/imported/spread_6_128_120_50_50.png-b865a1678b2e46de8b805c9484a602bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Overworld/Flashlight/spread_3_64_120_0_0.png"
-dest_files=["res://.godot/imported/spread_3_64_120_0_0.png-2a43930bd31ad4d50e636b62ed92588f.ctex"]
+source_file="res://Overworld/Flashlight/spread_6_128_120_50_50.png"
+dest_files=["res://.godot/imported/spread_6_128_120_50_50.png-b865a1678b2e46de8b805c9484a602bb.ctex"]
 
 [params]
 

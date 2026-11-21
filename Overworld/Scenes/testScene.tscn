@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_3ej4y"]
 [ext_resource type="AudioStream" uid="uid://ba2hmkbsel372" path="res://Music/First theme_3.ogg" id="2_lh8g8"]
-[ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="3_u7ns6"]
 [ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="4_n21f0"]
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="5_lh8g8"]
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="10_bxlvk"]
@@ -61,6 +60,7 @@ physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
 [node name="testScene" type="Node2D" unique_id=367241156]
+y_sort_enabled = true
 script = ExtResource("1_3ej4y")
 music = ExtResource("2_lh8g8")
 
@@ -79,11 +79,8 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAADAAEAAQAFAAAAAAADAAIAAQAFAAAAAAAEAAEAAQAFAAAAAAAEAAIAAQAFAAAAAAAFAAEAAQAFAAAAAAAFAAIAAQAFAAAAAAAGAAEAAQAFAAAAAAAGAAIAAQAFAAAAAAAHAAEAAQAFAAAAAAAHAAIAAQAFAAAAAAAIAAEAAQAFAAAAAAAIAAIAAQAFAAAAAAAJAAEAAQAFAAAAAAAJAAIAAQAFAAAAAAAKAAEAAQAFAAAAAAAKAAIAAQAFAAAAAAALAAEAAQAFAAAAAAALAAIAAQAFAAAAAAAMAAEAAQAFAAAAAAAMAAIAAQAFAAAAAAANAAEAAQAFAAAAAAANAAIAAQAFAAAAAAAOAAEAAQAFAAAAAAAOAAIAAQADAAAAAAAPAAEAAQAFAAAAAAAPAAIAAQABAAAAAAAQAAEAAQAFAAAAAAAQAAIAAQAEAAAAAAARAAEAAQAFAAAAAAARAAIAAQAEAAAAAAASAAEAAQAFAAAAAAASAAIAAQAEAAAAAAATAAEAAQAFAAAAAAATAAIAAQAAAAAAAAAUAAEAAQAFAAAAAAAUAAIAAQADAAAAAAAVAAEAAQAFAAAAAAAVAAIAAQAJAAAAAAAWAAEAAQAFAAAAAAAWAAIAAQAHAAAAAAAXAAEAAQAFAAAAAAAXAAIAAQAIAAAAAAAYAAEAAQAFAAAAAAAYAAIAAQAFAAAAAAAZAAEAAQAFAAAAAAAZAAIAAQAFAAAAAAAaAAEAAQAFAAAAAAAaAAIAAQAFAAAAAAAbAAEAAQAFAAAAAAAbAAIAAQAFAAAAAAA=")
 tile_set = SubResource("TileSet_1ptfn")
 
-[node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("3_u7ns6")]
-position = Vector2(1376, 512)
-
 [node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
-position = Vector2(528, 536)
+position = Vector2(1301, 548)
 
 [node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("14_f85uf")]
 offset_left = 1024.0

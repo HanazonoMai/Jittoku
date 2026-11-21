@@ -78,3 +78,13 @@ func movement():
 	
 	velocity = mov.normalized()*movementSpeed
 	move_and_slide()
+
+func set_leader(new_leader: PlayerOverworld):
+	leader = new_leader
+	leader.follower = self
+	PlayerData.followed_by_merry = true
+
+func leave_leader() -> void:
+	leader.follower = null
+	leader = null
+	PlayerData.followed_by_merry = false

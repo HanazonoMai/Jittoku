@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba65w447xm6yg"
-path="res://.godot/imported/focus_3_128_10_0_0.png-b4dfc205543b96cb58b8464bc3863dc1.ctex"
+uid="uid://bgqvwmjk4nrwb"
+path="res://.godot/imported/focus_6_256_15_50_50.png-31fa3a56357badfba5519cb1aa98c7f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Overworld/Flashlight/focus_3_128_10_0_0.png"
-dest_files=["res://.godot/imported/focus_3_128_10_0_0.png-b4dfc205543b96cb58b8464bc3863dc1.ctex"]
+source_file="res://Overworld/Flashlight/focus_6_256_15_50_50.png"
+dest_files=["res://.godot/imported/focus_6_256_15_50_50.png-31fa3a56357badfba5519cb1aa98c7f2.ctex"]
 
 [params]
 
