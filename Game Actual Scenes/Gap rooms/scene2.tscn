@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="8_capn3"]
 [ext_resource type="PackedScene" uid="uid://b2r0y8jx6rwuq" path="res://Overworld/chargeStation.tscn" id="9_5ul56"]
 [ext_resource type="PackedScene" uid="uid://co3tpkk01o00t" path="res://Overworld/gap.tscn" id="10_job65"]
+[ext_resource type="PackedScene" uid="uid://1twqowpwuhjg" path="res://Overworld/WallLight/wallLight.tscn" id="11_625rc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("3_lyw6m")
@@ -120,5 +121,11 @@ teleport_target = NodePath("../gap3")
 
 [node name="dropPoint" type="Marker2D" parent="." unique_id=1059740348]
 position = Vector2(1182, 716)
+
+[node name="wallLight" parent="." unique_id=1354274070 instance=ExtResource("11_625rc")]
+position = Vector2(864, 408.00003)
+
+[node name="wallLight2" parent="." unique_id=695143185 instance=ExtResource("11_625rc")]
+position = Vector2(1502, 408.00003)
 
 [connection signal="full" from="sensor" to="door" method="_onFull"]
