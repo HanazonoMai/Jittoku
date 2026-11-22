@@ -112,6 +112,7 @@ offset_left = 448.0
 offset_top = -240.0
 offset_right = 576.0
 offset_bottom = -176.0
+target = "uid://cmsa4n8l1n3l4"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_15mjm")]
 position = Vector2(1088, -176)
