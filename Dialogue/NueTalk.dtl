@@ -1,4 +1,4 @@
-join Dialogue/renko leftmost
+join renko leftmost
 renko: Huff, huff. I think…I lost it.
 unknown: Grrrahwee…
 renko: What? No! How did it find me?!
@@ -7,7 +7,7 @@ renko: Stop! Stay away! Of all the times for my flashlight to completely crap ou
 unknown: Hirrrrg…hehe…
 renko: Is…Is it laughing? That sounded almost human.
 unknown: Oh man, that was fun. You were really scared, weren’t ya?
-join Dialogue/nue rightmost
+join nue rightmost
 renko: Huh? A girl? What’s going on? Who are you?
 nue: Name’s Nue Houjuu and well, I’ma nue!
 renko: You're the ones that's been chasing me this whole time!
@@ -16,13 +16,13 @@ renko: And are you the mastermind behind all of this?! I already finished all my
 nue: Woah, 'old up. I'm no mastermind. I was just told to come here. Then I saw you hanging around and it was just way too tempting to not chase after ya, haha!
 renko: So this whole time hunting me down has just been a game to you?
 nue: Pretty much, yeah!
-Dialogue/renko: Grr, I don’t have time for this! I  have to save Merry and I still don’t know where she is exactly.
+renko: Grr, I don’t have time for this! I  have to save Merry and I still don’t know where she is exactly.
 nue: Aw, ya lost or something?
-Dialogue/renko: No, I'm not lost. Merry just is…
-Dialogue/nue: Hmm…OH! That reminds me! I was informed to give  the first human I saw a message. I kinda forgot cause I was having too much fun chasing you around.
-Dialogue/renko: I was told to tell you to look for the space between spaces. Or something like that.
-Dialogue/renko: What does that even mean?!
-Dialogue/nue: Hell if I know. I guess just look somewhere you haven’t looked before now. But I’m bored now so I’m off to find some more fun. See ya!
-leave Dialogue/nue
-Dialogue/renko: Damn that youkai. But I guess that clue was helpful. I just have to look for the right gap.
-Dialogue/renko: Hang in there, Merry. I'm coming for you.
+renko: No, I'm not lost. Merry just is…
+nue: Hmm…OH! That reminds me! I was informed to give  the first human I saw a message. I kinda forgot cause I was having too much fun chasing you around.
+renko: I was told to tell you to look for the space between spaces. Or something like that.
+renko: What does that even mean?!
+nue: Hell if I know. I guess just look somewhere you haven’t looked before now. But I’m bored now so I’m off to find some more fun. See ya!
+leave nue
+renko: Damn that youkai. But I guess that clue was helpful. I just have to look for the right gap.
+renko: Hang in there, Merry. I'm coming for you.

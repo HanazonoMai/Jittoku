@@ -1,11 +1,11 @@
 [style name="our style"]
-join Dialogue/renko leftmost
+join renko leftmost
 renko: Dammit, she's not here either. Where did you go Merry?
 renko: What am I supposed to do now?!
 unknown: By the gods you’re a loud one.
 renko: Huh?! Who?!
 unknown: Oh good, you can hear me, which means-
-join Dialogue/doremy rightmost
+join doremy rightmost
 unknown: You should be able to see me too.
 renko: Geez forget who, what the heck are you?! And what’s with that outfit. Is that a tail?
 unknown: Well…I see you’re pretty rude for a human, but considering your situation, I guess that's understandable. I, however, am not that rude so I will give you my name.
@@ -32,6 +32,6 @@ renko: How comforting…
 renko: Ugh…
 \doremy: The best advice I can give you right now is to head down that hallway over there. I'll stay here and provide emotional support every time you see my cute face!
 renko: Okay. Thanks, I guess.
-leave Dialogue/renko
+leave renko
 \doremy: …
 \doremy: I hope that creature she mentioned isn’t anything serious. I wasn’t told to add anything like that.
