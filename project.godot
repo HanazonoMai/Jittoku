@@ -28,7 +28,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="jittoku"
-run/main_scene="uid://p2ufics87t0d"
+run/main_scene="uid://chk1tc5imhf0y"
 config/features=PackedStringArray("4.7", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"
@@ -47,22 +47,22 @@ Dialogic="*uid://ds2q0uclmolvu"
 [dialogic]
 
 directories/dch_directory={
-"MeetingEiki": "res://MeetingEiki.dch",
-"doremy": "res://doremy.dch",
-"eiki": "res://eiki.dch",
-"merry": "res://merry.dch",
-"nue": "res://nue.dch",
-"renko": "res://renko.dch",
-"unknown": "res://unknown.dch",
-"yukari": "res://yukari.dch"
+"Dialogue/doremy": "res://Dialogue/doremy.dch",
+"Dialogue/eiki": "res://Dialogue/eiki.dch",
+"Dialogue/merry": "res://Dialogue/merry.dch",
+"Dialogue/nue": "res://Dialogue/nue.dch",
+"Dialogue/renko": "res://Dialogue/renko.dch",
+"Dialogue/unknown": "res://Dialogue/unknown.dch",
+"Dialogue/yukari": "res://Dialogue/yukari.dch",
+"MeetingEiki": "res://Dialogue/MeetingEiki.dch"
 }
 directories/dtl_directory={
-"MeetingDoremy": "res://MeetingDoremy.dtl",
-"MeetingEiki": "res://MeetingEiki.dtl",
-"MerryTaken": "res://MerryTaken.dtl",
-"NueTalk": "res://NueTalk.dtl",
-"YukariTalkandEnding": "res://YukariTalkandEnding.dtl",
-"opening": "res://opening.dtl",
+"Dialogue/opening": "res://Dialogue/opening.dtl",
+"MeetingDoremy": "res://Dialogue/MeetingDoremy.dtl",
+"MeetingEiki": "res://Dialogue/MeetingEiki.dtl",
+"MerryTaken": "res://Dialogue/MerryTaken.dtl",
+"NueTalk": "res://Dialogue/NueTalk.dtl",
+"YukariTalkandEnding": "res://Dialogue/YukariTalkandEnding.dtl",
 "testline": "res://testline.dtl"
 }
 layout/style_directory={}

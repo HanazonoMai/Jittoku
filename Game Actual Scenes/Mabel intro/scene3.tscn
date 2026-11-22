@@ -59,6 +59,9 @@ tile_size = Vector2i(32, 64)
 physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
+size = Vector2(64, 432)
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_hc6kg")
 
@@ -97,5 +100,12 @@ position = Vector2(2242, 488)
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_epon8")]
 position = Vector2(1856, 640)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1234061186]
+position = Vector2(2144, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=583862259]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1ptfn")
 
 [connection signal="full" from="sensor" to="door" method="_onFull"]
