@@ -73,17 +73,20 @@ shape = SubResource("CapsuleShape2D_xmnp2")
 [node name="Footsteps" parent="." unique_id=1531425362 instance=ExtResource("3_aflxf")]
 pitch_scale = 0.37
 max_distance = 500.0
+bus = &"SFX"
 
 [node name="Growl" parent="." unique_id=819291767 instance=ExtResource("3_aflxf")]
 stream = ExtResource("4_t55ac")
 pitch_scale = 1.17
 max_distance = 750.0
+bus = &"SFX"
 step_interval = 7.0
 
 [node name="Snarl" parent="." unique_id=1014094729 instance=ExtResource("3_aflxf")]
 stream = ExtResource("5_qhohm")
 pitch_scale = 0.9
 max_distance = 750.0
+bus = &"SFX"
 step_interval = 5.0
 
 [connection signal="area_entered" from="FarDetectionArea" to="." method="_on_far_detection_area_area_entered"]
