@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dub4uv3qcrvr3" path="res://Overworld/sensor.gd" id="1_7dht3"]
 [ext_resource type="Texture2D" uid="uid://det6u5rnxrcdl" path="res://Overworld/sensor_full.png" id="2_7dht3"]
+[ext_resource type="AudioStream" uid="uid://bun6l5u50i5e5" path="res://Sound/pluck.ogg" id="3_i4poh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
 radius = 8.062258
@@ -45,8 +46,15 @@ visible = false
 energy = 2.0
 texture = SubResource("GradientTexture2D_1ptfn")
 
-[node name="SoundActivate" type="AudioStreamPlayer2D" parent="." unique_id=445049637]
+[node name="Pluck" type="AudioStreamPlayer2D" parent="." unique_id=61519182]
+stream = ExtResource("3_i4poh")
+volume_db = 4.0
+max_distance = 512.0
 bus = &"SFX"
+
+[node name="Timer" type="Timer" parent="Pluck" unique_id=2094661981]
+autostart = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_onAreaEntered"]
 [connection signal="area_exited" from="Area2D" to="." method="_onAreaExited"]
+[connection signal="timeout" from="Pluck/Timer" to="Pluck" method="play"]
