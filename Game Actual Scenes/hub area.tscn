@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="7_15mjm"]
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="9_6yvxd"]
 [ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="10_22ri1"]
+[ext_resource type="Texture2D" uid="uid://hr1v5t1oq1w6" path="res://Overworld/Doremy_Sprite.png" id="12_nw5gy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("3_0hs1t")
@@ -77,6 +78,7 @@ sources/0 = SubResource("TileSetAtlasSource_22ri1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
 size = Vector2(26, 64)
+
 
 [sub_resource type="GDScript" id="GDScript_xmnp2"]
 script/source = "extends Node
@@ -207,6 +209,16 @@ position = Vector2(1342, -88)
 
 [node name="EndingUnlockScript" type="Node" parent="." unique_id=1753274218]
 script = SubResource("GDScript_xmnp2")
+
+[node name="DoremySprite" type="Sprite2D" parent="." unique_id=573831675]
+position = Vector2(224, -96)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_nw5gy")
+
+[node name="Area2D" type="Area2D" parent="DoremySprite" unique_id=298382368]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoremySprite/Area2D" unique_id=471936644]
+shape = SubResource("RectangleShape2D_p3vtu")
 
 [connection signal="full" from="sensor" to="door" method="_onFull"]
 [connection signal="full" from="sensor2" to="door4" method="_onFull"]
