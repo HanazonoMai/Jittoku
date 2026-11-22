@@ -28,7 +28,7 @@ enum Behavior {
 @export var time_needed_to_forget_the_flashlight: float = 5.0
 @export var stalking_speed: float = 130
 @export var stalking_lerp_speed: float = 8.0
-@export var sprinting_speed: float = 500
+@export var sprinting_speed: float = 300
 @export var sprinting_lerp_speed: float = 10.0
 @export var fast_looking_lerp_speed: float = 15.0
 @export var sensor_observation_distance: float = 80.0
@@ -39,7 +39,7 @@ enum Behavior {
 @export var max_stalking_time_before_attack: float = 25.0
 @export var attack_range: float = 50.0
 @export_category("Interaction Range")
-@export var solid_collision_radius: float = 30.0
+@export var solid_collision_radius: float = 120.0
 @export var surroundings_detection_radius: float = 90.0
 @export var far_detection_distance: float = 1500.0
 @export var far_detection_spread: float = 400.0
@@ -183,8 +183,8 @@ func move_forwards(delta: float) -> void:
 	move_and_slide()
 
 func move_forward_simple(delta: float):
-	var amount = min(current_speed, global_position.distance_to(temporary_target_position))
-	velocity = amount*(temporary_target_position-global_position).normalized()
+	#var amount = min(current_speed, global_position.distance_to(temporary_target_position))
+	velocity = current_speed*(temporary_target_position-global_position).normalized()
 	move_and_slide()
 
 func retreat_backwards(delta: float, target_position: Vector2, stopping_distance: float) -> void:

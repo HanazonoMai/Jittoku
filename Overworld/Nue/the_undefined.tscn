@@ -12,6 +12,9 @@ radius = 22.0
 height = 72.0
 
 [node name="TheUndefined" type="CharacterBody2D" unique_id=1116115569]
+collision_layer = 2
+collision_mask = 130
+motion_mode = 1
 script = ExtResource("1_bsmgh")
 
 [node name="appearance" type="Node2D" parent="." unique_id=1654596208]
