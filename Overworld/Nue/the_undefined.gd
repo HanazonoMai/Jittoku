@@ -9,7 +9,8 @@ enum Behavior {
 	DETECTED_SENSOR = 1,
 	DETECTED_FLASHLIGHT = 2,
 	STALKING = 3,
-	ATTACKING = 4
+	ATTACKING = 4,
+	IDLE = 5,
 }
 @export var behavior: int = 0 #makeshift state machine
 
@@ -18,13 +19,14 @@ enum Behavior {
 # 2: detected flashlight beam in her far sight, proceeding toward them until the light turns off
 # 3: detected players: stalking from afar
 # 4: detected players: running on them and attacking
+# 5: idle: do nothing until activated by script/signal
 
 @export_category("Behavior properties")
 @export var roaming_speed: float = 50
 @export var roaming_lerp_speed: float = 3.0
 @export var roaming_radius: float = 300.0
 @export var roaming_timer_min: float = 2.0
-@export var roaming_timer_max: float = 15.0
+@export var roaming_timer_max: float = 10.0
 @export var time_needed_to_forget_the_flashlight: float = 5.0
 @export var stalking_speed: float = 130
 @export var stalking_lerp_speed: float = 8.0
@@ -34,8 +36,8 @@ enum Behavior {
 @export var sensor_observation_distance: float = 80.0
 @export var sensor_observation_time: float = 2.0
 @export var min_stalking_distance: float = 60.0 # below this: attack
-@export var max_stalking_distance: float = 250.0 # above this: stop stalking
-@export var outrunning_time: float = 10.0
+@export var max_stalking_distance: float = 175.0 # above this: stop stalking
+@export var outrunning_time: float = 4.0
 @export var max_stalking_time_before_attack: float = 25.0
 @export var attack_range: float = 50.0
 @export_category("Interaction Range")
@@ -84,7 +86,10 @@ func _ready() -> void:
 	temporary_target_position = global_position
 	find_all_sensors()
 	hitbox_setup()
-	start_roaming()
+	if behavior == Behavior.IDLE:
+		current_speed = 0.0
+	else:
+		start_roaming()
 	call_deferred("find_player")
 
 func _physics_process(delta: float) -> void:
@@ -243,7 +248,7 @@ func start_checking_sensor(sensor: StaticBody2D) -> void:
 	behavior = 1
 	$Label.text = "Checking sensor"
 	speed_regime = 0
-	current_speed = roaming_speed
+	current_speed = randf_range(70, 100)
 	checked_sensors.append(sensor)
 	target = sensor
 	var sensor_position = sensor.global_position
@@ -270,7 +275,7 @@ func start_checking_flashlight_beam() -> void:
 	$Label.text = "Checking flashlight"
 	behavior = 2
 	speed_regime = 1
-	current_speed = roaming_speed
+	current_speed = randf_range(60, 80)
 	target = get_tree().get_first_node_in_group("player")
 	temporary_target_position = target.global_position
 	#stopping = false
@@ -318,9 +323,15 @@ func stalking(delta: float) -> void:
 	temporary_target_position = target.global_position
 	var d = global_position.distance_to(target.global_position)
 	if d > max_stalking_distance:
-		start_roaming()
-	if d < min_stalking_distance:
+		if is_currently_outrun == false:
+			is_currently_outrun = true
+			outrunning_timer.start(outrunning_time)
+			#await get_tree().create_timer(outrunning_time).timeout
+			#_on_outrunning_timer_timeout()
+	elif d < min_stalking_distance:
 		start_attacking_player()
+	else:
+		is_currently_outrun = false
 	return
 	#var ideal_radius = min_stalking_distance +(max_stalking_distance - min_stalking_distance)/2
 	#if d >= max_stalking_distance:
