@@ -21,23 +21,23 @@ func _process(delta: float) -> void:
 		setOff()
 		return
 	
-	#if Input.is_action_pressed("spray"):
-	#	setMode(0)
-	#	collision.shape = load("res://arc collision.tres")
-	#	drainBattery(delta)
-	#elif Input.is_action_pressed("focused"):
-	#	setMode(1)
-	#	collision.shape = load("res://line collision.tres")
-	#	drainBattery(delta)
-	#else:
-	#	setOff()
+	if Input.is_action_pressed("spray"):
+		setMode(0)
+		collision.shape = load("res://arc collision.tres")
+		drainBattery(delta)
+	elif Input.is_action_pressed("focused"):
+		setMode(1)
+		collision.shape = load("res://line collision.tres")
+		drainBattery(delta)
+	else:
+		setOff()
 
 func _input(event: InputEvent) -> void:
 	pass
-#	if event.is_action_pressed("spray") or event.is_action_pressed("focused"):
-#		$SoundOn.play()
-#	elif event.is_action_released("spray") or event.is_action_released("focused"):
-#		$SoundOff.play()
+	if event.is_action_pressed("spray") or event.is_action_pressed("focused"):
+		$SoundOn.play()
+	elif event.is_action_released("spray") or event.is_action_released("focused"):
+		$SoundOff.play()
 
 func setMode(newIndex: int) -> void:
 	texture = modes[newIndex]

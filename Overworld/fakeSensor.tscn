@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://0w86o7lcuf0k"]
 
 [ext_resource type="Script" uid="uid://b3hlq5n78fxpe" path="res://Overworld/fakeSensor.gd" id="1_bsxs8"]
-[ext_resource type="Texture2D" uid="uid://bxlsbm7v8qlqa" path="res://Overworld/slime-Sheet.png" id="2_w5sru"]
+[ext_resource type="Texture2D" uid="uid://det6u5rnxrcdl" path="res://Overworld/sensor_full.png" id="2_bsxs8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
 radius = 8.062258
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p3vtu"]
 resource_local_to_scene = true
-radius = 12.0
+radius = 13.0
 
 [sub_resource type="Gradient" id="Gradient_7dht3"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -22,7 +22,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.90000004, 0.1)
 metadata/_snap_enabled = true
 
-[node name="sensor" type="StaticBody2D" unique_id=1941800079]
+[node name="fakeSensor" type="StaticBody2D" unique_id=1941800079]
 collision_layer = 128
 script = ExtResource("1_bsxs8")
 
@@ -30,8 +30,7 @@ script = ExtResource("1_bsxs8")
 shape = SubResource("CircleShape2D_1ptfn")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=204687708]
-texture = ExtResource("2_w5sru")
-hframes = 3
+texture = ExtResource("2_bsxs8")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=958025414]
 collision_layer = 2048

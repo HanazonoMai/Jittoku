@@ -94,16 +94,16 @@ position = Vector2(448, -512)
 toUnlock = 3
 
 [node name="sensor2" parent="." unique_id=1941800079 instance=ExtResource("8_lsd5q")]
-position = Vector2(304, -304)
+position = Vector2(290, -379)
 
 [node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("8_lsd5q")]
-position = Vector2(336, -288)
+position = Vector2(353, -316)
 
 [node name="sensor3" parent="." unique_id=98498307 instance=ExtResource("8_lsd5q")]
-position = Vector2(304, -272)
+position = Vector2(290, -250)
 
 [node name="sensor4" parent="." unique_id=1118459224 instance=ExtResource("8_lsd5q")]
-position = Vector2(640, 64)
+position = Vector2(642, 41)
 
 [connection signal="full" from="sensor2" to="door" method="_onFull"]
 [connection signal="full" from="sensor" to="door" method="_onFull"]
