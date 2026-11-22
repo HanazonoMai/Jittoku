@@ -43,6 +43,7 @@ AudioManager="*res://Singletons/audioManager.gd"
 KeyManager="*res://Singletons/keyManager.gd"
 PlayerData="*res://Singletons/playerData.gd"
 Dialogic="*uid://ds2q0uclmolvu"
+SceneTransition="*uid://bkij6lxw3m3qx"
 
 [dialogic]
 
