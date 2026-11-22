@@ -19,7 +19,7 @@
 &"portraits": {
 "New portrait": {
 "export_overrides": {
-"image": "\"res://Dialogue/Portraits/HIFUUMERR.png\""
+"image": "\"res://Dialogue/Portraits/Doremy_Portrait.png\""
 },
 "mirror": false,
 "offset": Vector2(0, 0),
