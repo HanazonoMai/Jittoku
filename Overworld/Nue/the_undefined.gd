@@ -429,6 +429,7 @@ func swapScene(newScene):
 	#player.transfer_global_position(_spawnPoint.global_position)
 	
 	SceneTransition.teethOpen()
+	PlayerData.load_save_state()
 
 func _on_roaming_timer_timeout() -> void:
 	if behavior == 0:
