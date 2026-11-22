@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://4k2mbgsppx7a" path="res://Sound/click on.ogg" id="2_xfikj"]
 [ext_resource type="AudioStream" uid="uid://b7dd0pw4h6vrd" path="res://Sound/click off.ogg" id="3_0cb63"]
 
-[node name="playerFlashlight" type="Node2D" unique_id=764475660]
+[node name="playerFlashlight" type="Node2D" unique_id=764475660 groups=["Flashlight"]]
 script = ExtResource("1_rxv40")
 light_source_width = 6.0
 spread_mode_range = 128.0
@@ -38,3 +38,14 @@ stream = ExtResource("2_xfikj")
 
 [node name="SoundOff" type="AudioStreamPlayer2D" parent="." unique_id=2035994859]
 stream = ExtResource("3_0cb63")
+
+[node name="MonitorableArea" type="Area2D" parent="." unique_id=1878709164]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+
+[node name="visibleSpread" type="CollisionShape2D" parent="MonitorableArea" unique_id=633975182]
+disabled = true
+
+[node name="visibleFocus" type="CollisionShape2D" parent="MonitorableArea" unique_id=1681714829]
+disabled = true

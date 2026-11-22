@@ -14,6 +14,7 @@ var player_spawn_handled_by_scene_switcher: bool = false
 var followed_by_merry: bool = true
 var max_flashlight_battery: float = 100.0
 var flashlight_battery: float = 100.0
+var flashlight_on: bool = false
 
 func _process(delta: float) -> void:
 	totalPlaytime += delta

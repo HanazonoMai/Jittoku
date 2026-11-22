@@ -83,6 +83,9 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 [global_group]
 
 Follower=""
+Sensor=""
+Flashlight=""
+player=""
 
 [input]
 
@@ -165,6 +168,7 @@ focused={
 2d_physics/layer_3="Interactables"
 2d_physics/layer_5="Scene Switchers"
 2d_physics/layer_8="Overworld tiles"
+2d_physics/layer_10="Visible by the undefined"
 2d_physics/layer_12="Light"
 
 [rendering]

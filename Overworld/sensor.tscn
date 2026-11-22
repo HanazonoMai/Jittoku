@@ -21,8 +21,15 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.90000004, 0.1)
 metadata/_snap_enabled = true
 
+<<<<<<< Updated upstream
 [node name="sensor" type="StaticBody2D" unique_id=1941800079]
 scale = Vector2(2, 2)
+=======
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6a36"]
+radius = 8.0
+
+[node name="sensor" type="StaticBody2D" unique_id=1941800079 groups=["Sensor"]]
+>>>>>>> Stashed changes
 collision_layer = 128
 script = ExtResource("1_7dht3")
 
@@ -54,6 +61,14 @@ bus = &"SFX"
 
 [node name="Timer" type="Timer" parent="Pluck" unique_id=2094661981]
 autostart = true
+
+[node name="MonitorableArea" type="Area2D" parent="." unique_id=1492470415]
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonitorableArea" unique_id=948259499]
+shape = SubResource("CircleShape2D_f6a36")
 
 [connection signal="area_entered" from="Area2D" to="." method="_onAreaEntered"]
 [connection signal="area_exited" from="Area2D" to="." method="_onAreaExited"]
