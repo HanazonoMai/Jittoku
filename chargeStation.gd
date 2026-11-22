@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var chargeRate: float = .5
-@onready var player = $"../playerOverworld"
+var player : Node2D
 
 var isCharging: bool = false
 @export var maxChargeDistance: float = 300
