@@ -7,7 +7,11 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6a36"]
 
-[node name="TheUndefined" type="Node2D" unique_id=1947426764]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xmnp2"]
+radius = 22.0
+height = 72.0
+
+[node name="TheUndefined" type="CharacterBody2D" unique_id=1116115569]
 script = ExtResource("1_bsmgh")
 
 [node name="appearance" type="Node2D" parent="." unique_id=1654596208]
@@ -44,6 +48,16 @@ shape = SubResource("CircleShape2D_f6a36")
 [node name="StalkingTimer" type="Timer" parent="." unique_id=190544844]
 
 [node name="SensorObservationTimer" type="Timer" parent="." unique_id=1970127385]
+
+[node name="Label" type="Label" parent="." unique_id=28171556]
+offset_left = 28.0
+offset_top = 21.0
+offset_right = 68.0
+offset_bottom = 44.0
+text = "behavior"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308010852]
+shape = SubResource("CapsuleShape2D_xmnp2")
 
 [connection signal="area_entered" from="FarDetectionArea" to="." method="_on_far_detection_area_area_entered"]
 [connection signal="area_entered" from="CloseDetectionArea" to="." method="_on_close_detection_area_area_entered"]

@@ -1,7 +1,16 @@
-extends Node2D
+extends CharacterBody2D
+
+const Sensor = preload("res://Overworld/sensor.gd")
 
 @export var target: Node2D = null
 
+enum Behavior {
+	ROAMING = 0,
+	DETECTED_SENSOR = 1,
+	DETECTED_FLASHLIGHT = 2,
+	STALKING = 3,
+	ATTACKING = 4
+}
 @export var behavior: int = 0 #makeshift state machine
 
 # 0: roaming
@@ -11,13 +20,13 @@ extends Node2D
 # 4: detected players: running on them and attacking
 
 @export_category("Behavior properties")
-@export var roaming_speed: float = 300
+@export var roaming_speed: float = 50
 @export var roaming_lerp_speed: float = 3.0
-@export var roaming_radius: float = 1000.0
+@export var roaming_radius: float = 300.0
 @export var roaming_timer_min: float = 2.0
 @export var roaming_timer_max: float = 15.0
 @export var time_needed_to_forget_the_flashlight: float = 5.0
-@export var stalking_speed: float = 320
+@export var stalking_speed: float = 240
 @export var stalking_lerp_speed: float = 8.0
 @export var sprinting_speed: float = 700
 @export var sprinting_lerp_speed: float = 10.0
@@ -51,7 +60,7 @@ extends Node2D
 
 var is_currently_outrun: bool
 
-var current_speed: float = 0.0
+var current_speed: float = 100.0
 var speed_regime: int = 0 #0 = roaming, 1 = investigating/stalking, 2 = sprinting
 #var stopping: bool = false
 var checked_sensors: Array[StaticBody2D] = []
@@ -69,20 +78,32 @@ var stalking_phase: int = 0 #0 = approacking, 1 = retreating, 2 = standing by
 var attack_launched: bool = false
 
 func _ready() -> void:
+	temporary_target_position = global_position
+	find_all_sensors()
 	hitbox_setup()
+	start_roaming()
+
 func _physics_process(delta: float) -> void:
 	if behavior == 0:
 		roaming(delta)
 	if behavior == 1:
 		checking_sensor(delta)
-	if behavior == 2:
-		checking_flashlight_beam(delta)
+	#if behavior == 2:
+		#checking_flashlight_beam(delta)
 	if behavior == 3:
 		stalking(delta)
-	if behavior == 4:
-		attacking_player(delta)
-	move_forwards(delta)
+	#if behavior == 4:
+		#attacking_player(delta)
+	move_forward_simple(delta)
 
+func find_all_sensors():
+	var parent = get_parent()
+	for c in parent.find_children("", "StaticBody2D"):
+		if c.get_script() == Sensor:
+			c.connect("full", notice_sensor.bind(c))
+
+func notice_sensor(sensor : Node2D):
+	start_checking_sensor(sensor)
 
 func hitbox_setup() -> void:
 	var solid_shape = CircleShape2D.new()
@@ -91,14 +112,14 @@ func hitbox_setup() -> void:
 	var surroundings_detection_shape = CircleShape2D.new()
 	surroundings_detection_shape.radius = surroundings_detection_radius
 	surroundings_detection_box.shape = surroundings_detection_shape
-	var close_detection_shape = ConvexPolygonShape2D
+	var close_detection_shape = ConvexPolygonShape2D.new()
 	var point_c_0 = Vector2(0.0,- surroundings_detection_radius)
 	var point_c_1 = Vector2(close_detection_distance, - close_detection_spread/2)
 	var point_c_2 = Vector2(close_detection_distance, close_detection_spread/2)
 	var point_c_3 = Vector2(0.0, surroundings_detection_radius)
 	close_detection_shape.points = PackedVector2Array([point_c_0, point_c_1, point_c_2,point_c_3])
 	close_detection_box.shape = close_detection_shape
-	var far_detection_shape = ConvexPolygonShape2D
+	var far_detection_shape = ConvexPolygonShape2D.new()
 	var point_f_0 = Vector2( 0.0, - solid_collision_radius)
 	var point_f_1 = Vector2(far_detection_distance, - far_detection_spread/2)
 	var point_f_2 = Vector2(far_detection_distance, far_detection_spread/2)
@@ -145,8 +166,13 @@ func look_at_target(delta: float, target_position: Vector2) -> void:
 	global_rotation = lerp(global_rotation,target_angle, delta * fast_looking_lerp_speed)
 
 func move_forwards(delta: float) -> void:
-	var velocity = Vector2(current_speed,0).rotated(global_rotation)
-	global_position += delta * velocity
+	velocity = Vector2(current_speed,0).rotated(global_rotation)
+	move_and_slide()
+
+func move_forward_simple(delta: float):
+	var amount = min(current_speed, global_position.distance_to(temporary_target_position))
+	velocity = amount*(temporary_target_position-global_position).normalized()
+	move_and_slide()
 
 func retreat_backwards(delta: float, target_position: Vector2, stopping_distance: float) -> void:
 	if global_position.distance_squared_to(target_position) <= stopping_distance: # and stopping == false:
@@ -158,7 +184,7 @@ func retreat_backwards(delta: float, target_position: Vector2, stopping_distance
 		#stop the motion
 		#stopping = true
 		look_at_target(delta, target_position)
-		current_speed = lerp(current_speed, 0, delta * stalking_lerp_speed)
+		current_speed = lerp(current_speed, 0.0, delta * stalking_lerp_speed)
 
 func stand_by(delta: float) -> void:
 	if is_equal_approx(current_speed, 0.0):
@@ -171,14 +197,16 @@ func stand_by(delta: float) -> void:
 			lerp_speed = stalking_lerp_speed
 		else:
 			lerp_speed = sprinting_lerp_speed
-		current_speed = lerp(current_speed, 0, delta * lerp_speed)
+		current_speed = lerp(current_speed, 0.0, delta * lerp_speed)
 		
 
 # Roaming	
 func start_roaming() -> void:
 	behavior = 0
+	$Label.text = "Roaming"
 	roaming_home_position = global_position
 	speed_regime = 0
+	current_speed = roaming_speed
 	set_roaming_target()
 
 func set_roaming_target() -> void:
@@ -190,12 +218,15 @@ func set_roaming_target() -> void:
 	roaming_timer.start(random_roaming_time)
 
 func roaming(delta: float) -> void:
-	move_to(delta, temporary_target_position, 0)
+	pass
+	# move_to(delta, temporary_target_position, 0)
 
 # checking sensors
 func start_checking_sensor(sensor: StaticBody2D) -> void:
 	behavior = 1
+	$Label.text = "Checking sensor"
 	speed_regime = 0
+	current_speed = stalking_speed
 	checked_sensors.append(sensor)
 	target = sensor
 	var sensor_position = sensor.global_position
@@ -207,16 +238,18 @@ func start_checking_sensor(sensor: StaticBody2D) -> void:
 func checking_sensor(delta: float) -> void:
 	var d = global_position.distance_to(target.global_position)
 	if d > 1.5* sensor_observation_distance:
-		move_to(delta, temporary_target_position, 0)
+		pass
+		#move_to(delta, temporary_target_position, 0)
 	else:
 		stand_by(delta)
-		look_at_target(delta, target.global_position)
+		#look_at_target(delta, target.global_position)
 		if observing_sensor == false:
 			observing_sensor = true
 			sensor_observation_timer.start(sensor_observation_time)
 
 # checking flashlight beam
 func start_checking_flashlight_beam() -> void:
+	$Label.text = "Checking flashlight"
 	behavior = 2
 	speed_regime = 1
 	target = get_tree().get_first_node_in_group("player")
@@ -243,7 +276,9 @@ func checking_flashlight_beam(delta: float) -> void:
 # stalking player
 func start_stalking_player() -> void:
 	behavior = 3
+	$Label.text = "Stalking"
 	speed_regime = 1
+	current_speed = stalking_speed
 	target = get_tree().get_first_node_in_group("player")
 	temporary_target_position = target.global_position
 	var random_attack_time = outrunning_time + randf() * (max_stalking_time_before_attack - outrunning_time)
@@ -252,6 +287,9 @@ func start_stalking_player() -> void:
 
 func stalking(delta: float) -> void:
 	temporary_target_position = target.global_position
+	if global_position.distance_to(target.global_position) > max_stalking_distance:
+		start_roaming()
+	return
 	var d = global_position.distance_to(temporary_target_position)
 	var ideal_radius = min_stalking_distance +(max_stalking_distance - min_stalking_distance)/2
 	if d >= max_stalking_distance:
@@ -284,12 +322,15 @@ func stalking(delta: float) -> void:
 # attacking player
 func start_attacking_player() -> void:
 	behavior = 4
+	$Label.text = "Attacking"
 	speed_regime = 2
+	current_speed = sprinting_speed
 	target = get_tree().get_first_node_in_group("player")
 	temporary_target_position = target.global_position
 
 func attacking_player(delta: float) -> void:
 	temporary_target_position = target.global_position
+	return
 	var d = global_position.distance_to(temporary_target_position)
 	move_to(delta, temporary_target_position, 0)
 	if d <= attack_range and attack_launched == false:
