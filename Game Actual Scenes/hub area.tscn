@@ -73,6 +73,9 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 128
 sources/0 = SubResource("TileSetAtlasSource_22ri1")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
+size = Vector2(26, 64)
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_dhdrt")
 music = ExtResource("2_r8o3s")
@@ -149,13 +152,25 @@ position = Vector2(512, -176)
 position = Vector2(1344, -176)
 
 [node name="sensor" parent="." unique_id=413137387 instance=ExtResource("9_6yvxd")]
-position = Vector2(1184, -112)
+position = Vector2(1184, -99)
 
 [node name="sensor2" parent="." unique_id=1300282469 instance=ExtResource("9_6yvxd")]
-position = Vector2(1440, -112)
+position = Vector2(1440, -99)
 
 [node name="sensor3" parent="." unique_id=601764307 instance=ExtResource("9_6yvxd")]
 position = Vector2(609, -99)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=459185387]
+position = Vector2(752, -544)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1635695714]
+shape = SubResource("RectangleShape2D_1ptfn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2542632]
+position = Vector2(912, -544)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1238763204]
+shape = SubResource("RectangleShape2D_1ptfn")
 
 [connection signal="full" from="sensor4" to="door2" method="_onFull"]
 [connection signal="full" from="sensor5" to="door2" method="_onFull"]

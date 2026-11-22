@@ -90,7 +90,7 @@ offset_left = 888.0
 offset_top = -154.0
 offset_right = 952.0
 offset_bottom = -90.0
-target = "uid://bh6m1emad843"
+target = "uid://ckxlmord8uvmv"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_26k51")]
 position = Vector2(920, -112)
@@ -100,14 +100,17 @@ toUnlock = 3
 position = Vector2(1058, 162)
 scale = Vector2(2, 2)
 
-[node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("8_s6cjl")]
+[node name="sensor" parent="." unique_id=1195054767 node_paths=PackedStringArray("door") instance=ExtResource("8_s6cjl")]
 position = Vector2(876, 72)
+door = NodePath("../door")
 
-[node name="sensor2" parent="." unique_id=991320404 instance=ExtResource("8_s6cjl")]
+[node name="sensor2" parent="." unique_id=991320404 node_paths=PackedStringArray("door") instance=ExtResource("8_s6cjl")]
 position = Vector2(1056, 34)
+door = NodePath("../door")
 
-[node name="sensor3" parent="." unique_id=1889691421 instance=ExtResource("8_s6cjl")]
+[node name="sensor3" parent="." unique_id=1889691421 node_paths=PackedStringArray("door") instance=ExtResource("8_s6cjl")]
 position = Vector2(970, 72)
+door = NodePath("../door")
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_wps3n")]
 position = Vector2(728, 32)

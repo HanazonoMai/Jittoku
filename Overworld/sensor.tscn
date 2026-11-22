@@ -25,6 +25,8 @@ metadata/_snap_enabled = true
 scale = Vector2(2, 2)
 collision_layer = 128
 script = ExtResource("1_7dht3")
+pitchUp = 1.5
+soundLoopTime = 0.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1809846294]
 position = Vector2(-0.5, 6)

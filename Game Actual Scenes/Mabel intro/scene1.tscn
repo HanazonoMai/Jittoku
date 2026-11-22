@@ -97,6 +97,8 @@ position = Vector2(1888, 336)
 
 [node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("8_1xyjj")]
 position = Vector2(1889, 480)
+pitchUp = 1.5
+soundLoopTime = 0.75
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_7iplx")]
 position = Vector2(1760, 544)

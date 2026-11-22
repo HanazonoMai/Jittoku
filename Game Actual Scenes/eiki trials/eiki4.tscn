@@ -103,14 +103,17 @@ scale = Vector2(2, 2)
 position = Vector2(928, 288)
 scale = Vector2(2, 2)
 
-[node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("9_8twqt")]
+[node name="sensor" parent="." unique_id=1195054767 node_paths=PackedStringArray("door") instance=ExtResource("9_8twqt")]
 position = Vector2(1056, 286)
+door = NodePath("../door")
 
-[node name="sensor3" parent="." unique_id=1889691421 instance=ExtResource("9_8twqt")]
+[node name="sensor3" parent="." unique_id=1889691421 node_paths=PackedStringArray("door") instance=ExtResource("9_8twqt")]
 position = Vector2(1058, 34)
+door = NodePath("../door")
 
-[node name="sensor4" parent="." unique_id=2010249259 instance=ExtResource("9_8twqt")]
+[node name="sensor4" parent="." unique_id=2010249259 node_paths=PackedStringArray("door") instance=ExtResource("9_8twqt")]
 position = Vector2(1058, 160)
+door = NodePath("../door")
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("10_e1kij")]
 position = Vector2(726, 354)

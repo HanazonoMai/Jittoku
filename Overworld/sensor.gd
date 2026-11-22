@@ -7,8 +7,10 @@ var bodiesInZone: int = 0
 
 @export var pitchUp := 1.0
 @export var soundLoopTime := 1.5
+@export var door: StaticBody2D
 
 signal full
+#signal unloaded
 
 func _ready():
 	$Pluck/Timer.wait_time = soundLoopTime
@@ -16,7 +18,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if charge == maxCharge:
 		return
-		
+
+
 	if bodiesInZone > 0:
 		charge += fillSpeed * delta
 		if charge >= 100:
@@ -35,4 +38,12 @@ func _onAreaExited(_body: Node2D) -> void:
 
 
 func unload():
+	if charge == maxCharge:
+		door.counter =-1 
+		if door.counter < 0:
+			door.counter = 0
 	charge = 0
+	$PointLight2D.visible = false
+	
+
+	

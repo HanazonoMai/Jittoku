@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://dfsn2lw5lkyyj"]
 
 [ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_pwf33"]
-[ext_resource type="AudioStream" uid="uid://ba2hmkbsel372" path="res://Music/First theme_3.ogg" id="2_cpatp"]
 [ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="3_8lheh"]
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="4_3e6um"]
 [ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="5_npti8"]
@@ -59,9 +58,11 @@ tile_size = Vector2i(32, 64)
 physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
+size = Vector2(32, 256)
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_pwf33")
-music = ExtResource("2_cpatp")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
 visible = false
@@ -88,10 +89,11 @@ offset_left = 384.0
 offset_top = -576.0
 offset_right = 512.0
 offset_bottom = -512.0
+target = "uid://btln70s42br1k"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_1yoqa")]
 position = Vector2(448, -512)
-toUnlock = 3
+toUnlock = 4
 
 [node name="sensor2" parent="." unique_id=1941800079 instance=ExtResource("8_lsd5q")]
 position = Vector2(290, -379)
@@ -104,6 +106,13 @@ position = Vector2(290, -250)
 
 [node name="sensor4" parent="." unique_id=1118459224 instance=ExtResource("8_lsd5q")]
 position = Vector2(642, 41)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1083718219]
+position = Vector2(544, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1412703857]
+position = Vector2(-16, 0)
+shape = SubResource("RectangleShape2D_1ptfn")
 
 [connection signal="full" from="sensor2" to="door" method="_onFull"]
 [connection signal="full" from="sensor" to="door" method="_onFull"]

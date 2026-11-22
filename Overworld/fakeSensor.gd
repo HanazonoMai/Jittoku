@@ -5,8 +5,16 @@ var maxCharge = 100
 @export var fillSpeed: float = 50
 var bodiesInZone: int = 0
 
+@export var pitchUp := 1.0
+@export var soundLoopTime := 1.5
+
 signal full
 
+func _ready():
+	$Pluck/Timer.wait_time = soundLoopTime
+	
+
+			
 func _process(delta: float) -> void:
 	if charge == maxCharge:
 		return
@@ -14,8 +22,11 @@ func _process(delta: float) -> void:
 	if bodiesInZone > 0:
 		charge += fillSpeed * delta
 		if charge >= 100:
+			charge = 100
 			full.emit()
 			unload()
+		if not $Pluck.playing:
+			$Pluck.pitch_scale = 1.0 + pitchUp*charge/maxCharge
 
 func _onAreaEntered(_body: Node2D) -> void:
 	bodiesInZone += 1
@@ -26,4 +37,5 @@ func _onAreaExited(_body: Node2D) -> void:
 
 
 func unload():
+	$Wrong.play()
 	charge = 0
