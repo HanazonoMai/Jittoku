@@ -27,6 +27,8 @@ var drain_rate: float = 0.0
 @onready var focus_light = $FocusLight
 @onready var spread_hitbox = $Area2D/spreadBeamHitbox
 @onready var focus_hitbox = $Area2D/focusBeamHitbox
+@onready var visible_spread = $MonitorableArea/visibleSpread
+@onready var visible_focus = $MonitorableArea/visibleFocus
 
 
 func _enter_tree() -> void:
@@ -64,30 +66,39 @@ func _input(event: InputEvent) -> void:
 func set_off() -> void:
 	if current_mode == 0:
 		return
+	PlayerData.flashlight_on = false
 	spread_light.enabled = false
 	focus_light.enabled = false
 	spread_hitbox.set_deferred("disabled", true)
 	focus_hitbox.set_deferred("disabled", true)
+	visible_spread.set_deferred("disabled", true)
+	visible_focus.set_deferred("disabled", true)
 	current_mode = 0
 	drain_rate = 0.0
 	
 func set_spread() -> void:
 	if current_mode == 1:
 		return
+	PlayerData.flashlight_on = true
 	spread_light.enabled = true
 	focus_light.enabled = false
 	spread_hitbox.set_deferred("disabled", false)
 	focus_hitbox.set_deferred("disabled", true)
+	visible_spread.set_deferred("disabled", false)
+	visible_focus.set_deferred("disabled", true)
 	current_mode = 1
 	drain_rate = focused_drain_rate
 
 func set_focus() -> void:
 	if current_mode == 2:
 		return
+	PlayerData.flashlight_on = true
 	spread_light.enabled = false
 	focus_light.enabled = true
 	spread_hitbox.set_deferred("disabled", true)
 	focus_hitbox.set_deferred("disabled", false)
+	visible_spread.set_deferred("disabled", true)
+	visible_focus.set_deferred("disabled", false)
 	current_mode = 2
 	drain_rate = spread_drain_rate
 
@@ -104,10 +115,14 @@ func addBattery(amount: float) -> void:
 func make_beam_collision_boxes() -> void:
 	var points_spread = create_beam_collision_box(spread_mode_range, spread_mode_angle, spread_mode_falloff, spread_mode_angular_falloff)
 	spread_hitbox.shape = ConvexPolygonShape2D.new()
-	spread_hitbox.shape.set_point_cloud(points_spread) 
+	spread_hitbox.shape.set_point_cloud(points_spread)
+	visible_spread.shape = ConvexPolygonShape2D.new()
+	visible_spread.shape.set_point_cloud(points_spread) 
 	var points_focus = create_beam_collision_box(focus_mode_range, focus_mode_angle, focus_mode_falloff, focus_mode_angular_falloff)
 	focus_hitbox.shape = ConvexPolygonShape2D.new()
 	focus_hitbox.shape.set_point_cloud(points_focus)
+	visible_focus.shape = ConvexPolygonShape2D.new()
+	visible_focus.shape.set_point_cloud(points_focus)
 	
 
 func check_and_load_beams() -> void:

@@ -1,3 +1,54 @@
 [gd_scene format=3 uid="uid://bsopwv2eyksvw"]
 
-[node name="TheUndefined" type="Node2D" unique_id=2077473713]
+[ext_resource type="Script" uid="uid://drw8n2vepq2o1" path="res://Overworld/Nue/the_undefined.gd" id="1_bsmgh"]
+[ext_resource type="Texture2D" uid="uid://bqv6hsula7jay" path="res://Overworld/Nue/HIFUUNUCHI.png" id="2_1ftcn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n21f0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6a36"]
+
+[node name="TheUndefined" type="Node2D" unique_id=1947426764]
+script = ExtResource("1_bsmgh")
+
+[node name="appearance" type="Node2D" parent="." unique_id=1654596208]
+
+[node name="Sprite2D" type="Sprite2D" parent="appearance" unique_id=1767936118]
+texture = ExtResource("2_1ftcn")
+
+[node name="FarDetectionArea" type="Area2D" parent="." unique_id=961281796]
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="FarDetection" type="CollisionShape2D" parent="FarDetectionArea" unique_id=784472986]
+shape = SubResource("CircleShape2D_n21f0")
+
+[node name="CloseDetectionArea" type="Area2D" parent="." unique_id=954717777]
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="SolidCollision" type="CollisionShape2D" parent="CloseDetectionArea" unique_id=591970506]
+shape = SubResource("CircleShape2D_f6a36")
+
+[node name="CloseDetection" type="CollisionShape2D" parent="CloseDetectionArea" unique_id=2127092763]
+
+[node name="SurroundingsDetection" type="CollisionShape2D" parent="CloseDetectionArea" unique_id=56458641]
+
+[node name="RoamingTimer" type="Timer" parent="." unique_id=1709720948]
+
+[node name="FlashlightDisinterestTimer" type="Timer" parent="." unique_id=1974763306]
+
+[node name="OutrunningTimer" type="Timer" parent="." unique_id=1577318868]
+
+[node name="StalkingTimer" type="Timer" parent="." unique_id=190544844]
+
+[node name="SensorObservationTimer" type="Timer" parent="." unique_id=1970127385]
+
+[connection signal="area_entered" from="FarDetectionArea" to="." method="_on_far_detection_area_area_entered"]
+[connection signal="area_entered" from="CloseDetectionArea" to="." method="_on_close_detection_area_area_entered"]
+[connection signal="timeout" from="RoamingTimer" to="." method="_on_roaming_timer_timeout"]
+[connection signal="timeout" from="FlashlightDisinterestTimer" to="." method="_on_flashlight_disinterest_timer_timeout"]
+[connection signal="timeout" from="OutrunningTimer" to="." method="_on_outrunning_timer_timeout"]
+[connection signal="timeout" from="StalkingTimer" to="." method="_on_stalking_timer_timeout"]
+[connection signal="timeout" from="SensorObservationTimer" to="." method="_on_sensor_observation_timer_timeout"]
