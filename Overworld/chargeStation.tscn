@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hnusndaka1by" path="res://chargeStation.gd" id="1_1fwvy"]
 [ext_resource type="Texture2D" uid="uid://bnqtc1uvvgtie" path="res://Overworld/charge-Sheet.png" id="2_mhyvd"]
 [ext_resource type="AudioStream" uid="uid://d3v8x5wviavwh" path="res://Sound/hum.ogg" id="3_mhyvd"]
+[ext_resource type="PackedScene" uid="uid://bfe4mpmcyt8ld" path="res://Overworld/clue_bubble.tscn" id="4_1fj8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1fj8r"]
 atlas = ExtResource("2_mhyvd")
@@ -117,8 +118,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
-radius = 19.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crb23"]
+size = Vector2(22, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6a36"]
+radius = 17.528547
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5jfb"]
+radius = 39.223717
 
 [node name="chargeStation" type="StaticBody2D" unique_id=1121453722]
 scale = Vector2(2, 2)
@@ -132,7 +139,8 @@ autoplay = "default"
 frame_progress = 0.25484648
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1232045902]
-shape = SubResource("CircleShape2D_1ptfn")
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_crb23")
 
 [node name="SoundHum" type="AudioStreamPlayer2D" parent="." unique_id=291843938]
 stream = ExtResource("3_mhyvd")
@@ -140,3 +148,28 @@ volume_db = 5.85
 autoplay = true
 max_distance = 256.0
 bus = &"SFX"
+
+[node name="InteractionBox" type="Area2D" parent="." unique_id=979966215]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox" unique_id=113161668]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_f6a36")
+
+[node name="ClueBox" type="Area2D" parent="." unique_id=166556654]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClueBox" unique_id=45539193]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_t5jfb")
+
+[node name="clueBubble" parent="." unique_id=167724094 instance=ExtResource("4_1fj8r")]
+visible = false
+modulate = Color(1, 1, 1, 0.53333336)
+position = Vector2(0, -15.5)
+scale = Vector2(0.22, 0.22)
+
+[connection signal="body_entered" from="ClueBox" to="." method="_on_clue_box_body_entered"]
+[connection signal="body_exited" from="ClueBox" to="." method="_on_clue_box_body_exited"]
