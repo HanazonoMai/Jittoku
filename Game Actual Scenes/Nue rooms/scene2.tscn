@@ -1,0 +1,187 @@
+[gd_scene format=4 uid="uid://dpge3s2x22f1j"]
+
+[ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_h36k4"]
+[ext_resource type="AudioStream" uid="uid://ba2hmkbsel372" path="res://Music/First theme_3.ogg" id="2_34a0r"]
+[ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="3_couen"]
+[ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="4_tahav"]
+[ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="5_tmyx2"]
+[ext_resource type="PackedScene" uid="uid://dvh30xtsa3ep0" path="res://Overworld/sceneSwitcherTransparent.tscn" id="6_ox8uh"]
+[ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="7_uuuen"]
+[ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="8_q7842"]
+[ext_resource type="PackedScene" uid="uid://b2r0y8jx6rwuq" path="res://Overworld/chargeStation.tscn" id="9_sefyg"]
+[ext_resource type="PackedScene" uid="uid://bsopwv2eyksvw" path="res://Overworld/Nue/the_undefined.tscn" id="10_886yp"]
+[ext_resource type="PackedScene" uid="uid://1twqowpwuhjg" path="res://Overworld/WallLight/wallLight.tscn" id="11_ga5hy"]
+[ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="12_34a0r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
+texture = ExtResource("3_couen")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+1:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:0/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iefw6"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 128
+sources/3 = SubResource("TileSetAtlasSource_lh8g8")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqs0p"]
+texture = ExtResource("4_tahav")
+texture_region_size = Vector2i(32, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+
+[sub_resource type="TileSet" id="TileSet_1ptfn"]
+tile_size = Vector2i(32, 64)
+physics_layer_0/collision_layer = 128
+sources/1 = SubResource("TileSetAtlasSource_gqs0p")
+
+[sub_resource type="GDScript" id="GDScript_xmnp2"]
+script/source = "extends Area2D
+
+@onready var nue : Node2D = $\"../TheUndefined\"
+@onready var nuePoint = $\"../nuePoint\"
+@onready var nuePoint2 = $\"../nuePoint2\"
+@onready var player = $\"../playerOverworld\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if not (body is PlayerOverworld):
+		return
+	
+	set_deferred(\"monitoring\", false)
+	
+	
+	player.process_mode = Node.PROCESS_MODE_DISABLED
+	var tween = create_tween()
+	tween.tween_property(nue, \"global_position\", nuePoint.global_position, 0.5).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	nue.get_node(\"Growl\").process_mode = Node.PROCESS_MODE_ALWAYS
+	nue.get_node(\"Growl\").play()
+	
+	$\"../CutsceneStarter\".start()
+	
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	nue.get_node(\"Snarl\").process_mode = Node.PROCESS_MODE_ALWAYS
+	nue.get_node(\"Snarl\").play()
+	var tween2 = create_tween()
+	tween2.tween_property(nue, \"global_position\", nuePoint2.global_position, 4).set_ease(Tween.EASE_OUT)
+	
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h36k4"]
+size = Vector2(268, 230.99995)
+
+[node name="testScene" type="Node2D" unique_id=367241156]
+script = ExtResource("1_h36k4")
+music = ExtResource("2_34a0r")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
+visible = false
+color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
+z_index = -16
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAARAAYAAwACAAMAAAARAAcAAwACAAMAAAASAAYAAwAAAAIAAAASAAcAAwAAAAIAAAATAAYAAwACAAMAAAATAAcAAwACAAMAAAARAAUAAwACAAMAAAASAAUAAwAAAAIAAAATAAUAAwACAAMAAAARAAQAAwACAAMAAAASAAQAAwAAAAIAAAATAAQAAwACAAMAAAAQAPv/AwACAAMAAAAQAPz/AwACAAMAAAAQAP3/AwACAAMAAAAQAP7/AwACAAMAAAARAPv/AwABAAEAAAARAPz/AwABAAAAAAARAP3/AwABAAEAAAARAP7/AwACAAMAAAASAPv/AwAAAAIAAAASAPz/AwAAAAIAAAASAP3/AwAAAAIAAAASAP7/AwAAAAIAAAATAPv/AwABAAAAAAATAPz/AwABAAEAAAATAP3/AwABAAAAAAATAP7/AwACAAMAAAAUAPv/AwACAAMAAAAUAPz/AwACAAMAAAAUAP3/AwACAAMAAAAUAP7/AwACAAMAAAAQAPr/AwAAAAMAAAARAPr/AwAAAAMAAAASAPr/AwAAAAMAAAATAPr/AwAAAAMAAAAUAPr/AwAAAAMAAAARAP//AwACAAMAAAARAAAAAwACAAMAAAARAAEAAwACAAMAAAARAAIAAwACAAMAAAARAAMAAwACAAMAAAASAAMAAwAAAAIAAAATAAMAAwACAAMAAAATAAIAAwACAAMAAAATAAEAAwACAAMAAAATAAAAAwACAAMAAAATAP//AwACAAMAAAASAP//AwAAAAIAAAASAAAAAwAAAAIAAAASAAEAAwAAAAIAAAASAAIAAwAAAAIAAAARAAgAAwACAAMAAAASAAgAAwAAAAEAAAATAAgAAwACAAMAAAARAAkAAwACAAMAAAASAAkAAwACAAMAAAATAAkAAwACAAMAAAARAPn/AwACAAMAAAARAPj/AwACAAMAAAASAPj/AwACAAMAAAASAPn/AwACAAMAAAATAPn/AwACAAMAAAATAPj/AwACAAMAAAA=")
+tile_set = SubResource("TileSet_iefw6")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=291176650]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAQAPz/AQAAAAAAAAAUAPz/AQABAAAAAAASAAUAAQAEAAAAAAARAAUAAQABAAAAAAATAAUAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_1ptfn")
+
+[node name="playerOverworld" parent="." unique_id=219719093 instance=ExtResource("5_tmyx2")]
+position = Vector2(1185, 544)
+
+[node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
+position = Vector2(1189, 547)
+
+[node name="nuePoint" type="Marker2D" parent="." unique_id=191834216]
+position = Vector2(1184, 486)
+
+[node name="nuePoint2" type="Marker2D" parent="." unique_id=1684032925]
+position = Vector2(1195, 1384)
+
+[node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("6_ox8uh")]
+offset_left = 1085.0
+offset_top = -527.0
+offset_right = 1274.0
+offset_bottom = -459.0
+target = "uid://btln70s42br1k"
+spawnPoint = "nueDoor"
+
+[node name="door" parent="." unique_id=305306244 instance=ExtResource("7_uuuen")]
+position = Vector2(1181, -435)
+
+[node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("8_q7842")]
+position = Vector2(1303, -340)
+
+[node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_sefyg")]
+position = Vector2(1066, -342)
+
+[node name="TheUndefined" parent="." unique_id=1116115569 instance=ExtResource("10_886yp")]
+process_mode = 4
+position = Vector2(1198, 1386)
+behavior = 5
+
+[node name="wallLight" parent="." unique_id=1354274070 instance=ExtResource("11_ga5hy")]
+position = Vector2(992, 280)
+
+[node name="wallLight2" parent="." unique_id=1894636506 instance=ExtResource("11_ga5hy")]
+position = Vector2(1374, 280)
+
+[node name="wallLight3" parent="." unique_id=642305702 instance=ExtResource("11_ga5hy")]
+position = Vector2(1374, 1050)
+
+[node name="wallLight4" parent="." unique_id=1205187702 instance=ExtResource("11_ga5hy")]
+position = Vector2(991, 1050)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=662109444]
+position = Vector2(1183, 115)
+scale = Vector2(1, 0.99999994)
+monitorable = false
+script = SubResource("GDScript_xmnp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975119038]
+position = Vector2(1, 119.50009)
+shape = SubResource("RectangleShape2D_h36k4")
+
+[node name="CutsceneStarter" parent="." unique_id=40472308 instance=ExtResource("12_34a0r")]
+offset_left = 1091.0
+offset_top = 62.0
+offset_right = 1277.0
+offset_bottom = 94.0
+dialogueName = "uid://ccvd12eoynpct"
+cutsceneID = "nue"
+
+[connection signal="full" from="sensor" to="door" method="_onFull"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
