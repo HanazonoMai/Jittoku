@@ -79,7 +79,6 @@ sources/0 = SubResource("TileSetAtlasSource_22ri1")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
 size = Vector2(26, 64)
 
-
 [sub_resource type="GDScript" id="GDScript_xmnp2"]
 script/source = "extends Node
 
@@ -90,6 +89,9 @@ func _ready() -> void:
 		door2.counter = 10
 		door2.unlock()
 "
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3vtu"]
+size = Vector2(256, 256)
 
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_dhdrt")
