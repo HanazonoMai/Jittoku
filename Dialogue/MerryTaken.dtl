@@ -1,7 +1,7 @@
 [style name="our style"]
-join Dialogue/renko leftmost
+join renko leftmost
 renko: Hey, stick closer to me, it’s getting darker for some reason.
-join Dialogue/merry rightmost
+join merry rightmost
 merry: Is something wrong with flashlight?
 renko: No, it’s not. It’s just…ugh. What the hell?
 renko: It’s like the light just isn’t going anywhere. I can’t even see an inch in front of me.
@@ -16,7 +16,7 @@ renko: It’s getting a bit easier to see now. That was so weird, almost like we
 renko: Merry, you good? You’ve been quiet for a while.
 …
 renko: Merry? Huh?!
-leave Dialogue/merry
+leave merry
 renko: She’s…she’s gone?
 renko: When did she? Where did she? Did she fall?
 renko: No, I don’t see her. And I would have heard her if she did.

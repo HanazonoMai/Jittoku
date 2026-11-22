@@ -12,6 +12,9 @@ radius = 22.0
 height = 72.0
 
 [node name="TheUndefined" type="CharacterBody2D" unique_id=1116115569]
+collision_layer = 2
+collision_mask = 130
+motion_mode = 1
 script = ExtResource("1_bsmgh")
 
 [node name="appearance" type="Node2D" parent="." unique_id=1654596208]
@@ -40,14 +43,19 @@ shape = SubResource("CircleShape2D_f6a36")
 [node name="SurroundingsDetection" type="CollisionShape2D" parent="CloseDetectionArea" unique_id=56458641]
 
 [node name="RoamingTimer" type="Timer" parent="." unique_id=1709720948]
+one_shot = true
 
 [node name="FlashlightDisinterestTimer" type="Timer" parent="." unique_id=1974763306]
+one_shot = true
 
 [node name="OutrunningTimer" type="Timer" parent="." unique_id=1577318868]
+one_shot = true
 
 [node name="StalkingTimer" type="Timer" parent="." unique_id=190544844]
+one_shot = true
 
 [node name="SensorObservationTimer" type="Timer" parent="." unique_id=1970127385]
+one_shot = true
 
 [node name="Label" type="Label" parent="." unique_id=28171556]
 offset_left = 28.0

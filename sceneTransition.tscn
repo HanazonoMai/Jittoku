@@ -1,46 +1,32 @@
 [gd_scene format=3 uid="uid://bkij6lxw3m3qx"]
 
-[ext_resource type="Shader" uid="uid://c7vsvsg34xch5" path="res://transition.gdshader" id="1_0xm2m"]
+[ext_resource type="Material" uid="uid://cpwgebjec4eaf" path="res://sceneTransitionBoxes.tres" id="1_xwwjw"]
 
 [sub_resource type="GDScript" id="GDScript_t5h4u"]
 script/source = "extends CanvasLayer
 
+const boxes = preload(\"res://sceneTransitionBoxes.tres\")
+const teeth = preload(\"res://sceneTransitionTeeth.tres\")
+
 @onready var animation = $AnimationPlayer
+@onready var transition = $Transition
 
 func exit():
+	transition.material = boxes
 	animation.play(&\"exit\")
 
 func enter():
+	transition.material = boxes
+	animation.play(&\"enter\")
+
+func teethClose():
+	transition.material = teeth
+	animation.play(&\"exit\")
+
+func teethOpen():
+	transition.material = teeth
 	animation.play(&\"enter\")
 "
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2yge"]
-shader = ExtResource("1_0xm2m")
-shader_parameter/use_sprite_alpha = true
-shader_parameter/use_transition_texture = false
-shader_parameter/transition_type = 0
-shader_parameter/position = Vector2(0.5, 0.5)
-shader_parameter/invert = false
-shader_parameter/grid_size = Vector2(5, 5)
-shader_parameter/rotation_angle = 0.0
-shader_parameter/global_x_mirror = false
-shader_parameter/global_y_mirror = false
-shader_parameter/local_x_mirror = false
-shader_parameter/local_y_mirror = false
-shader_parameter/stagger = Vector2(0, 0)
-shader_parameter/cumulative_stagger_flip = false
-shader_parameter/cumulative_stagger = Vector2(0, 0)
-shader_parameter/stagger_frequency = Vector2i(2, 2)
-shader_parameter/flip_frequency = Vector2i(1, 1)
-shader_parameter/basic_feather = 0.0
-shader_parameter/use_mask_size = false
-shader_parameter/mask_size = Vector2(100, 100)
-shader_parameter/edges = 6
-shader_parameter/shape_feather = 0.1
-shader_parameter/sectors = 1
-shader_parameter/clock_feather = 0.0
-shader_parameter/progress = 10.0
-shader_parameter/progress_bias = Vector2(10, 10)
 
 [sub_resource type="Animation" id="Animation_0xm2m"]
 length = 0.001
@@ -54,28 +40,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [10.0]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_xwwjw"]
 resource_name = "enter"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Transition:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 10.0]
-}
-
-[sub_resource type="Animation" id="Animation_h2yge"]
-resource_name = "transition"
-length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,6 +56,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 10.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1bvp3"]
@@ -101,7 +85,7 @@ layer = 5
 script = SubResource("GDScript_t5h4u")
 
 [node name="Transition" type="ColorRect" parent="." unique_id=2080731914]
-material = SubResource("ShaderMaterial_h2yge")
+material = ExtResource("1_xwwjw")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

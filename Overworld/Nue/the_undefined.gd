@@ -9,7 +9,8 @@ enum Behavior {
 	DETECTED_SENSOR = 1,
 	DETECTED_FLASHLIGHT = 2,
 	STALKING = 3,
-	ATTACKING = 4
+	ATTACKING = 4,
+	IDLE = 5,
 }
 @export var behavior: int = 0 #makeshift state machine
 
@@ -18,28 +19,29 @@ enum Behavior {
 # 2: detected flashlight beam in her far sight, proceeding toward them until the light turns off
 # 3: detected players: stalking from afar
 # 4: detected players: running on them and attacking
+# 5: idle: do nothing until activated by script/signal
 
 @export_category("Behavior properties")
 @export var roaming_speed: float = 50
 @export var roaming_lerp_speed: float = 3.0
 @export var roaming_radius: float = 300.0
 @export var roaming_timer_min: float = 2.0
-@export var roaming_timer_max: float = 15.0
+@export var roaming_timer_max: float = 10.0
 @export var time_needed_to_forget_the_flashlight: float = 5.0
-@export var stalking_speed: float = 240
+@export var stalking_speed: float = 130
 @export var stalking_lerp_speed: float = 8.0
-@export var sprinting_speed: float = 700
+@export var sprinting_speed: float = 300
 @export var sprinting_lerp_speed: float = 10.0
 @export var fast_looking_lerp_speed: float = 15.0
 @export var sensor_observation_distance: float = 80.0
 @export var sensor_observation_time: float = 2.0
-@export var min_stalking_distance: float = 100.0
-@export var max_stalking_distance: float = 250.0
-@export var outrunning_time: float = 10.0
+@export var min_stalking_distance: float = 60.0 # below this: attack
+@export var max_stalking_distance: float = 175.0 # above this: stop stalking
+@export var outrunning_time: float = 4.0
 @export var max_stalking_time_before_attack: float = 25.0
 @export var attack_range: float = 50.0
 @export_category("Interaction Range")
-@export var solid_collision_radius: float = 30.0
+@export var solid_collision_radius: float = 120.0
 @export var surroundings_detection_radius: float = 90.0
 @export var far_detection_distance: float = 1500.0
 @export var far_detection_spread: float = 400.0
@@ -57,6 +59,8 @@ enum Behavior {
 @onready var flashlight_disinterest_timer = $FlashlightDisinterestTimer
 @onready var outrunning_timer = $OutrunningTimer
 @onready var stalking_timer = $StalkingTimer
+
+var parent_room : Node
 
 var is_currently_outrun: bool
 
@@ -78,32 +82,49 @@ var stalking_phase: int = 0 #0 = approacking, 1 = retreating, 2 = standing by
 var attack_launched: bool = false
 
 func _ready() -> void:
+	parent_room = get_parent()
 	temporary_target_position = global_position
 	find_all_sensors()
 	hitbox_setup()
-	start_roaming()
+	if behavior == Behavior.IDLE:
+		current_speed = 0.0
+	else:
+		start_roaming()
+	call_deferred("find_player")
 
 func _physics_process(delta: float) -> void:
 	if behavior == 0:
 		roaming(delta)
 	if behavior == 1:
 		checking_sensor(delta)
-	#if behavior == 2:
-		#checking_flashlight_beam(delta)
+	if behavior == 2:
+		checking_flashlight_beam(delta)
 	if behavior == 3:
 		stalking(delta)
-	#if behavior == 4:
-		#attacking_player(delta)
+	if behavior == 4:
+		attacking_player(delta)
 	move_forward_simple(delta)
 
+func find_player():
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		var flashlight = player.get_node("Pivot/playerFlashlight")
+		flashlight.connect("flashlight_on", notice_flashlight.bind(player))
+
+var all_sensors = []
 func find_all_sensors():
 	var parent = get_parent()
 	for c in parent.find_children("", "StaticBody2D"):
 		if c.get_script() == Sensor:
+			all_sensors.append(c)
 			c.connect("full", notice_sensor.bind(c))
 
 func notice_sensor(sensor : Node2D):
 	start_checking_sensor(sensor)
+
+func notice_flashlight(player : Node2D):
+	target = player
+	start_checking_flashlight_beam()
 
 func hitbox_setup() -> void:
 	var solid_shape = CircleShape2D.new()
@@ -170,8 +191,8 @@ func move_forwards(delta: float) -> void:
 	move_and_slide()
 
 func move_forward_simple(delta: float):
-	var amount = min(current_speed, global_position.distance_to(temporary_target_position))
-	velocity = amount*(temporary_target_position-global_position).normalized()
+	#var amount = min(current_speed, global_position.distance_to(temporary_target_position))
+	velocity = current_speed*(temporary_target_position-global_position).normalized()
 	move_and_slide()
 
 func retreat_backwards(delta: float, target_position: Vector2, stopping_distance: float) -> void:
@@ -187,17 +208,18 @@ func retreat_backwards(delta: float, target_position: Vector2, stopping_distance
 		current_speed = lerp(current_speed, 0.0, delta * stalking_lerp_speed)
 
 func stand_by(delta: float) -> void:
-	if is_equal_approx(current_speed, 0.0):
-		current_speed = 0.0
-	else:
-		var lerp_speed: float
-		if speed_regime == 0:
-			lerp_speed = roaming_lerp_speed
-		elif speed_regime == 1:
-			lerp_speed = stalking_lerp_speed
-		else:
-			lerp_speed = sprinting_lerp_speed
-		current_speed = lerp(current_speed, 0.0, delta * lerp_speed)
+	pass
+	#if is_equal_approx(current_speed, 0.0):
+		#current_speed = 0.0
+	#else:
+		#var lerp_speed: float
+		#if speed_regime == 0:
+			#lerp_speed = roaming_lerp_speed
+		#elif speed_regime == 1:
+			#lerp_speed = stalking_lerp_speed
+		#else:
+			#lerp_speed = sprinting_lerp_speed
+		#current_speed = lerp(current_speed, 0.0, delta * lerp_speed)
 		
 
 # Roaming	
@@ -226,7 +248,7 @@ func start_checking_sensor(sensor: StaticBody2D) -> void:
 	behavior = 1
 	$Label.text = "Checking sensor"
 	speed_regime = 0
-	current_speed = stalking_speed
+	current_speed = randf_range(70, 100)
 	checked_sensors.append(sensor)
 	target = sensor
 	var sensor_position = sensor.global_position
@@ -243,34 +265,46 @@ func checking_sensor(delta: float) -> void:
 	else:
 		stand_by(delta)
 		#look_at_target(delta, target.global_position)
-		if observing_sensor == false:
-			observing_sensor = true
-			sensor_observation_timer.start(sensor_observation_time)
+		#if observing_sensor == false:
+		#	observing_sensor = true
+		#	sensor_observation_timer.start(sensor_observation_time)
+		start_roaming()
 
 # checking flashlight beam
 func start_checking_flashlight_beam() -> void:
 	$Label.text = "Checking flashlight"
 	behavior = 2
 	speed_regime = 1
+	current_speed = randf_range(60, 80)
 	target = get_tree().get_first_node_in_group("player")
 	temporary_target_position = target.global_position
 	#stopping = false
 
 func checking_flashlight_beam(delta: float) -> void:
-	temporary_target_position = target.global_position
-	var d = global_position.distance_to(temporary_target_position)
-	var safety_distance = sqrt(pow(far_detection_distance,2) + pow(far_detection_spread,2))
 	if PlayerData.flashlight_on == true:
-		if flashlight_already_off == true and d > safety_distance:
-			stand_by(delta)
-		else:
-			flashlight_already_off = false
-			move_to(delta,temporary_target_position,0)
+		temporary_target_position = target.global_position
 	else:
-		stand_by(delta)
-		if flashlight_already_off == false:
-			flashlight_already_off = true
-			flashlight_disinterest_timer.start(time_needed_to_forget_the_flashlight)
+		var d = global_position.distance_to(temporary_target_position)
+		if d < 90.0:
+			start_roaming()
+	
+	
+	
+	
+	var safety_distance = sqrt(pow(far_detection_distance,2) + pow(far_detection_spread,2))
+	
+	return
+	#if PlayerData.flashlight_on == true:
+		#if flashlight_already_off == true and d > safety_distance:
+			#stand_by(delta)
+		#else:
+			#flashlight_already_off = false
+			##move_to(delta,temporary_target_position,0)
+	#else:
+		#stand_by(delta)
+		#if flashlight_already_off == false:
+			#flashlight_already_off = true
+			#flashlight_disinterest_timer.start(time_needed_to_forget_the_flashlight)
 	
 
 # stalking player
@@ -281,43 +315,51 @@ func start_stalking_player() -> void:
 	current_speed = stalking_speed
 	target = get_tree().get_first_node_in_group("player")
 	temporary_target_position = target.global_position
-	var random_attack_time = outrunning_time + randf() * (max_stalking_time_before_attack - outrunning_time)
-	stalking_timer.start(random_attack_time)
+	#var random_attack_time = outrunning_time + randf() * (max_stalking_time_before_attack - outrunning_time)
+	#stalking_timer.start(random_attack_time)
 	#stopping = false
 
 func stalking(delta: float) -> void:
 	temporary_target_position = target.global_position
-	if global_position.distance_to(target.global_position) > max_stalking_distance:
-		start_roaming()
-	return
-	var d = global_position.distance_to(temporary_target_position)
-	var ideal_radius = min_stalking_distance +(max_stalking_distance - min_stalking_distance)/2
-	if d >= max_stalking_distance:
+	var d = global_position.distance_to(target.global_position)
+	if d > max_stalking_distance:
 		if is_currently_outrun == false:
 			is_currently_outrun = true
 			outrunning_timer.start(outrunning_time)
-		stalking_phase = 0
-		move_to(delta,temporary_target_position,0)
-	elif d <= min_stalking_distance:
-		stalking_phase = 1
-		retreat_backwards(delta,temporary_target_position,max_stalking_distance)
+			#await get_tree().create_timer(outrunning_time).timeout
+			#_on_outrunning_timer_timeout()
+	elif d < min_stalking_distance:
+		start_attacking_player()
 	else:
 		is_currently_outrun = false
-		if stalking_phase == 0:
-			if d <= ideal_radius:
-				stalking_phase = 2
-				stand_by(delta)
-			else:
-				move_to(delta,temporary_target_position,0)
-		elif stalking_phase == 1:
-			if d >= ideal_radius:
-				stalking_phase = 2
-				stand_by(delta)
-			else:
-				retreat_backwards(delta,temporary_target_position,max_stalking_distance)
-		else: # stalking phase == 2
-			stand_by(delta)
-			look_at_target(delta, temporary_target_position)
+	return
+	#var ideal_radius = min_stalking_distance +(max_stalking_distance - min_stalking_distance)/2
+	#if d >= max_stalking_distance:
+		#if is_currently_outrun == false:
+			#is_currently_outrun = true
+			#outrunning_timer.start(outrunning_time)
+		#stalking_phase = 0
+		#move_to(delta,temporary_target_position,0)
+	#elif d <= min_stalking_distance:
+		#stalking_phase = 1
+		#retreat_backwards(delta,temporary_target_position,max_stalking_distance)
+	#else:
+		#is_currently_outrun = false
+		#if stalking_phase == 0:
+			#if d <= ideal_radius:
+				#stalking_phase = 2
+				#stand_by(delta)
+			#else:
+				#move_to(delta,temporary_target_position,0)
+		#elif stalking_phase == 1:
+			#if d >= ideal_radius:
+				#stalking_phase = 2
+				#stand_by(delta)
+			#else:
+				#retreat_backwards(delta,temporary_target_position,max_stalking_distance)
+		#else: # stalking phase == 2
+			#stand_by(delta)
+			#look_at_target(delta, temporary_target_position)
 		
 # attacking player
 func start_attacking_player() -> void:
@@ -330,15 +372,36 @@ func start_attacking_player() -> void:
 
 func attacking_player(delta: float) -> void:
 	temporary_target_position = target.global_position
-	return
 	var d = global_position.distance_to(temporary_target_position)
-	move_to(delta, temporary_target_position, 0)
+	#move_to(delta, temporary_target_position, 0)
 	if d <= attack_range and attack_launched == false:
 		attack()
 
 func attack() -> void:
 	attack_launched = true
+	var scene = parent_room.scene_file_path
+	swapScene(load(scene).instantiate())
 	pass
+
+func swapScene(newScene):
+	SceneTransition.teethClose()
+	await get_tree().create_timer(1).timeout
+	get_tree().root.add_child(newScene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = newScene
+	newScene.set_y_sort_enabled(true)
+	var _spawnPoint
+	
+	if parent_room.spawnPointUsed == "":
+		_spawnPoint = newScene.get_node("spawnPoint")
+	else:
+		_spawnPoint = newScene.get_node("spawnPoints/" + parent_room.spawnPointUsed)
+		
+	#var player = player_scene.instantiate()
+	#newScene.add_child(player)
+	#player.transfer_global_position(_spawnPoint.global_position)
+	
+	SceneTransition.teethOpen()
 
 func _on_roaming_timer_timeout() -> void:
 	if behavior == 0:
