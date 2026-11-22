@@ -76,7 +76,9 @@ tile_map_data = PackedByteArray("AAANAAIAAwACAAMAAAANAAMAAwACAAMAAAANAAQAAwACAAM
 tile_set = SubResource("TileSet_iefw6")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=291176650]
+position = Vector2(23, 64)
 scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAMAP7/AQAFAAAAAAAKAP7/AQAFAAAAAAALAP7/AQADAAAAAAAPAP7/AQAFAAAAAAAQAP7/AQADAAAAAAARAP7/AQAFAAAAAAA=")
 tile_set = SubResource("TileSet_1ptfn")
 
 [node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("5_4jxbj")]
@@ -93,7 +95,7 @@ offset_bottom = -90.0
 target = "uid://ckxlmord8uvmv"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_26k51")]
-position = Vector2(920, -112)
+position = Vector2(920, -113)
 toUnlock = 3
 
 [node name="fakeSensor" parent="." unique_id=1941800079 instance=ExtResource("8_k4rgt")]

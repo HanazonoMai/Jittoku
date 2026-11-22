@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cfw8a8rp8tg86" path="res://Overworld/playerOverworld.gd" id="1_q2cw2"]
 [ext_resource type="Texture2D" uid="uid://dne08u4hnyh52" path="res://Overworld/Renko/nurenko_normal_overworld.png" id="2_m5cj3"]
-[ext_resource type="Texture2D" uid="uid://cv1dwpfqce8dg" path="res://arclight.tres" id="3_5w56m"]
-[ext_resource type="Script" uid="uid://ds03rw2o6fn5w" path="res://Overworld/flashlight.gd" id="3_ls0qk"]
-[ext_resource type="Texture2D" uid="uid://d0xveogo3ys6g" path="res://linelight.tres" id="3_v0k1c"]
 [ext_resource type="AudioStream" uid="uid://4k2mbgsppx7a" path="res://Sound/click on.ogg" id="6_m5cj3"]
 [ext_resource type="AudioStream" uid="uid://b7dd0pw4h6vrd" path="res://Sound/click off.ogg" id="7_crdqf"]
 [ext_resource type="PackedScene" uid="uid://bnphs4bydjvpd" path="res://Overworld/Flashlight/playerFlashlight.tscn" id="8_crdqf"]
@@ -158,15 +155,10 @@ texture = SubResource("GradientTexture2D_h2bco")
 [node name="Pivot" type="Marker2D" parent="." unique_id=1564022182]
 position = Vector2(0, 16)
 
-[node name="Flashlight" type="PointLight2D" parent="Pivot" unique_id=118019784 node_paths=PackedStringArray("collision", "chargeBar")]
+[node name="Flashlight" type="PointLight2D" parent="Pivot" unique_id=118019784]
 visible = false
 position = Vector2(0, 63)
 energy = 2.0
-script = ExtResource("3_ls0qk")
-modes = Array[GradientTexture2D]([ExtResource("3_5w56m"), ExtResource("3_v0k1c")])
-battery = 80.0
-collision = NodePath("../Area2D/CollisionShape2D")
-chargeBar = NodePath("../../CanvasLayer/ProgressBar")
 
 [node name="SoundOn" type="AudioStreamPlayer2D" parent="Pivot/Flashlight" unique_id=1273011744]
 stream = ExtResource("6_m5cj3")

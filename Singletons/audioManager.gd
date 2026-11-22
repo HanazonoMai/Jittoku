@@ -5,6 +5,7 @@ var targetVolume = 0.0
 
 func _ready():
 	volume_db = 0
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 func playMusic(_stream: AudioStream, fadeIn:bool = false, fadeOutPrev: bool = false):
 	stream = _stream

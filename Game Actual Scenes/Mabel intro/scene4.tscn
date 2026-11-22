@@ -95,7 +95,7 @@ offset_left = 384.0
 offset_top = -576.0
 offset_right = 512.0
 offset_bottom = -512.0
-target = "uid://btln70s42br1k"
+target = "uid://drb2ohmdkycqk"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_1yoqa")]
 position = Vector2(448, -512)

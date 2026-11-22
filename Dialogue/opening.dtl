@@ -1,8 +1,9 @@
-join renko center
+[style name="our style"]
+join Dialogue/renko leftmost
 renko: Ugh, what the…ow…
-join merry center
+join Dialogue/merry rightmost
 merry: Renko, you’re okay! Thank goodness, you had me really worried.
-renko:  Yeah, yeah I’m good, I think. Head hurts and legs too…other than that I think nothing’s broken.
+renko: Yeah, yeah I’m good, I think. Head hurts and legs too…other than that I think nothing’s broken.
 renko: But what the heck happened, where are we? And how did we get here?
 merry: I’m…not sure
 merry: We were just walking home and then everything went dark.

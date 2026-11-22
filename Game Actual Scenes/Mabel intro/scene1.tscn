@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="7_dly42"]
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="8_1xyjj"]
 [ext_resource type="PackedScene" uid="uid://b2r0y8jx6rwuq" path="res://Overworld/chargeStation.tscn" id="9_7iplx"]
+[ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="11_0fhgb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("3_sqpj4")
@@ -106,5 +107,13 @@ position = Vector2(1889, 480)
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_7iplx")]
 position = Vector2(1760, 544)
+
+[node name="CutsceneStarter" parent="." unique_id=40472308 instance=ExtResource("11_0fhgb")]
+offset_left = 896.0
+offset_top = 384.0
+offset_right = 1024.0
+offset_bottom = 640.0
+dialogueName = "uid://bjp1vi8g186if"
+cutsceneID = "Opening"
 
 [connection signal="full" from="sensor" to="door" method="_onFull"]

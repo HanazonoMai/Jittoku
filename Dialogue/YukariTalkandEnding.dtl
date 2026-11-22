@@ -1,6 +1,7 @@
-join renko center
+[style name="our style"]
+join Dialogue/renko left
 renko: Great, where am I now? This place definitely isn’t the TORIFUNE anymore. And it’s super…creepy. I feel like I’m being watched. I swear I see eyes everywhere.
-join merry center
+join Dialogue/merry left
 merry: …
 renko: Huh? Merry?! Is that you?!
 merry: …
@@ -9,8 +10,8 @@ merry: …
 merry: Merry? What’s wrong?
 unknown: She can’t hear you at the moment.
 renko: ?!
-join yukari center
 unknown: Hello, Ms. Usami. Please let me promptly introduce myself.
+join Dialogue/yukari left
 yukari: I am Yukari Yakumo, or the mastermind behind this minor incident. And it's a pleasure to make your acquaintance.
 renko: Well I'm not pleased! Why did you drag us here and what have you done to Merry?!
 yukari: Fufufu. My, my you’re so upset. Ms. Hearn is just sleeping. As for yourself, why not just sit down for a few minutes? Rest your weary legs.
@@ -48,7 +49,7 @@ yukari: No, no tricks, but be warned a day will come where Maribel’s powers mi
 yukari: I will take her from you.
 renko: Then if that happens, I’ll try my hardest to get her back, just like I did today.
 merry: I will hold you to that, Renko.
-leave yukari
+leave Dialogue/yukari
 renko: Damn…she’s creepy. I've got a bunch of goosebumps.
 merry: Hmmm…ah?
 renko: Merry, you’re awake! Are you alright?

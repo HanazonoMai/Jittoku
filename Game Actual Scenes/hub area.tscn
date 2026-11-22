@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://btln70s42br1k"]
 
 [ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_dhdrt"]
-[ext_resource type="AudioStream" uid="uid://ba2hmkbsel372" path="res://Music/First theme_3.ogg" id="2_r8o3s"]
+[ext_resource type="AudioStream" uid="uid://bbs45bfi0c70t" path="res://Music/2nd theme_5.ogg" id="2_6yvxd"]
 [ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="3_0hs1t"]
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="4_403i4"]
 [ext_resource type="Texture2D" uid="uid://cuemthn44or80" path="res://Overworld/Tilesets/HIFUUSIDEWALFIXL-export.png" id="5_6yvxd"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dvh30xtsa3ep0" path="res://Overworld/sceneSwitcherTransparent.tscn" id="6_4els6"]
 [ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="7_15mjm"]
 [ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="9_6yvxd"]
+[ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="10_22ri1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("3_0hs1t")
@@ -78,11 +79,11 @@ size = Vector2(26, 64)
 
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_dhdrt")
-music = ExtResource("2_r8o3s")
+music = ExtResource("2_6yvxd")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
 visible = false
-color = Color(0.43462524, 0.24639958, 0.7682995, 0.7882353)
+color = Color(0.43529412, 0.24705882, 0.76862746, 0.7882353)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
 z_index = -16
@@ -97,14 +98,14 @@ tile_set = SubResource("TileSet_1ptfn")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="." unique_id=406181338]
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAALAPv/AAAAAAMAAAALAPr/AAAAAAMAAAALAPn/AAAAAAMAAAALAPj/AAAAAAMAAAALAPb/AAAAAAMAAAAOAPv/AAAAAAAAAAAOAPr/AAAAAAAAAAAOAPn/AAAAAAAAAAAOAPj/AAAAAAAAAAAOAPb/AAAAAAAAAAAOAPX/AAAAAAAAAAALAPX/AAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAALAPv/AAAAAAMAAAALAPr/AAAAAAMAAAALAPn/AAAAAAMAAAALAPj/AAAAAAMAAAALAPb/AAAAAAMAAAAOAPv/AAAAAAAAAAAOAPr/AAAAAAAAAAAOAPn/AAAAAAAAAAAOAPj/AAAAAAAAAAAOAPb/AAAAAAAAAAAOAPX/AAAAAAAAAAALAPX/AAAAAAMAAAD7//7/AAAAAAMAAAD7////AAAAAAMAAAD7/wAAAAAAAAMAAAD7/wEAAAAAAAMAAAAXAP7/AAAAAAAAAAAXAP//AAAAAAAAAAAXAAAAAAAAAAAAAAAXAAEAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_p3vtu")
 
 [node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("5_g0mqf")]
-position = Vector2(-112, 64)
+position = Vector2(-208, -32)
 
 [node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
-position = Vector2(-192, 64)
+position = Vector2(-208, -32)
 
 [node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("6_4els6")]
 offset_left = 448.0
@@ -137,7 +138,7 @@ offset_left = 1280.0
 offset_top = -256.0
 offset_right = 1408.0
 offset_bottom = -192.0
-target = "uid://kyhbcku6d57b"
+target = "uid://bp4d6mkc5h76e"
 
 [node name="sceneSwitcherTransparent4" parent="." unique_id=1206297564 instance=ExtResource("6_4els6")]
 offset_left = 768.0
@@ -171,6 +172,14 @@ position = Vector2(912, -544)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1238763204]
 shape = SubResource("RectangleShape2D_1ptfn")
+
+[node name="CutsceneStarter" parent="." unique_id=40472308 instance=ExtResource("10_22ri1")]
+offset_left = -80.0
+offset_top = -192.0
+offset_right = -48.0
+offset_bottom = 144.0
+dialogueName = "uid://ck3v1fgruf887"
+cutsceneID = "doremy"
 
 [connection signal="full" from="sensor4" to="door2" method="_onFull"]
 [connection signal="full" from="sensor5" to="door2" method="_onFull"]

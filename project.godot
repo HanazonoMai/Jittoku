@@ -66,8 +66,14 @@ directories/dtl_directory={
 "YukariTalkandEnding": "res://Dialogue/YukariTalkandEnding.dtl",
 "testline": "res://testline.dtl"
 }
-layout/style_directory={}
+layout/style_directory={
+"": "res://Dialogue/our style.tres",
+"our style": "res://Dialogue/our style.tres"
+}
 glossary/default_case_sensitive=true
+layout/style_list=["res://Dialogue/our style.tres"]
+layout/default_style="res://Dialogue/our style.tres"
+variables={}
 
 [display]
 
