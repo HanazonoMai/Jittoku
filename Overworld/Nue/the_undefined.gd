@@ -58,6 +58,8 @@ enum Behavior {
 @onready var outrunning_timer = $OutrunningTimer
 @onready var stalking_timer = $StalkingTimer
 
+var parent_room : Node
+
 var is_currently_outrun: bool
 
 var current_speed: float = 100.0
@@ -78,6 +80,7 @@ var stalking_phase: int = 0 #0 = approacking, 1 = retreating, 2 = standing by
 var attack_launched: bool = false
 
 func _ready() -> void:
+	parent_room = get_parent()
 	temporary_target_position = global_position
 	find_all_sensors()
 	hitbox_setup()
@@ -358,15 +361,37 @@ func start_attacking_player() -> void:
 
 func attacking_player(delta: float) -> void:
 	temporary_target_position = target.global_position
-	return
-	#var d = global_position.distance_to(temporary_target_position)
+	var d = global_position.distance_to(temporary_target_position)
 	#move_to(delta, temporary_target_position, 0)
-	#if d <= attack_range and attack_launched == false:
-		#attack()
+	if d <= attack_range and attack_launched == false:
+		attack()
 
 func attack() -> void:
 	attack_launched = true
+	var scene = parent_room.scene_file_path
+	swapScene(load(scene).instantiate())
 	pass
+
+func swapScene(newScene):
+	SceneTransition.exit()
+	await get_tree().create_timer(1).timeout
+	get_tree().root.add_child(newScene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = newScene
+	newScene.set_y_sort_enabled(true)
+	var spawnPoint = "" # TODO: use the one that we first spawned from
+	var _spawnPoint
+	
+	if spawnPoint == "":
+		_spawnPoint = newScene.get_node("spawnPoint")
+	else:
+		_spawnPoint = newScene.get_node("spawnPoints/" + spawnPoint)
+		
+	#var player = player_scene.instantiate()
+	#newScene.add_child(player)
+	#player.transfer_global_position(_spawnPoint.global_position)
+	
+	SceneTransition.enter()
 
 func _on_roaming_timer_timeout() -> void:
 	if behavior == 0:
