@@ -30,6 +30,7 @@ var drain_rate: float = 0.0
 @onready var visible_spread = $MonitorableArea/visibleSpread
 @onready var visible_focus = $MonitorableArea/visibleFocus
 
+signal flashlight_on
 
 func _enter_tree() -> void:
 	check_and_load_beams()
@@ -59,6 +60,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("spray") or event.is_action_pressed("focused"):
+		flashlight_on.emit()
 		$SoundOn.play()
 	elif event.is_action_released("spray") or event.is_action_released("focused"):
 		$SoundOff.play()
