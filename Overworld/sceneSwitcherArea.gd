@@ -35,4 +35,5 @@ func swapScene(newScene):
 	#player.transfer_global_position(_spawnPoint.global_position)
 	
 	SceneTransition.enter()
+	PlayerData.current_spawn_pos = _spawnPoint.global_position
 	PlayerData.make_save_state()

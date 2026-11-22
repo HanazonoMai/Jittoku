@@ -430,6 +430,7 @@ func swapScene(newScene):
 	
 	SceneTransition.teethOpen()
 	PlayerData.load_save_state()
+	PlayerData.flashlight_synced = false
 
 func _on_roaming_timer_timeout() -> void:
 	if behavior == 0:

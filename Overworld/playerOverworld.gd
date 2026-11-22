@@ -15,6 +15,7 @@ var merry_scene = preload("res://Overworld/followerOverworld.tscn")
 @onready var ray = $"Interaction detector"
 @onready var rayReach = ray.target_position.length()
 @onready var pivot = $Pivot
+@onready var battery_bar = $CanvasLayer/ProgressBar
 @export var follower: FollowerOverworld 
 
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	movement()
+	battery_bar.value = PlayerData.flashlight_battery
 	
 	if Input.is_action_just_pressed("accept"):
 		if ray.is_colliding():

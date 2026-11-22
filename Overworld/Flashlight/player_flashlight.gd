@@ -43,6 +43,9 @@ func _ready() -> void:
 	focus_light.texture = modes[1]
 	spread_light.position.y = spread_mode_range/2
 	focus_light.position.y = focus_mode_range/2
+	if PlayerData.flashlight_synced == false:
+		sync_save_state()
+		PlayerData.flashlight_synced = true
 
 func _process(delta: float) -> void:
 	if battery <= 0.0:
@@ -64,6 +67,10 @@ func _input(event: InputEvent) -> void:
 		$SoundOn.play()
 	elif event.is_action_released("spray") or event.is_action_released("focused"):
 		$SoundOff.play()
+
+func sync_save_state() -> void:
+	var saved_charge = PlayerData.save_state[3]
+	battery = saved_charge
 
 func set_off() -> void:
 	if current_mode == 0:
