@@ -29,7 +29,11 @@ func swapScene(newScene):
 	else:
 		newScene.spawnPointUsed = spawnPoint
 		_spawnPoint = newScene.get_node("spawnPoints/" + spawnPoint)
+		# moving to spawn only if explicitly specified just in case (it does not handle Merry)
+		var player = newScene.get_node("playerOverworld")
+		player.transfer_global_position(_spawnPoint.global_position)
 		
+	
 	#var player = player_scene.instantiate()
 	#newScene.add_child(player)
 	#player.transfer_global_position(_spawnPoint.global_position)

@@ -182,6 +182,17 @@ offset_bottom = 144.0
 dialogueName = "uid://ck3v1fgruf887"
 cutsceneID = "doremy"
 
+[node name="spawnPoints" type="Node2D" parent="." unique_id=706638378]
+
+[node name="nueDoor" type="Marker2D" parent="spawnPoints" unique_id=1295553190]
+position = Vector2(510, -77)
+
+[node name="eikiDoor" type="Marker2D" parent="spawnPoints" unique_id=824712547]
+position = Vector2(1091, -83)
+
+[node name="gapDoor" type="Marker2D" parent="spawnPoints" unique_id=1787189832]
+position = Vector2(1342, -88)
+
 [connection signal="full" from="sensor4" to="door2" method="_onFull"]
 [connection signal="full" from="sensor5" to="door2" method="_onFull"]
 [connection signal="full" from="sensor" to="door" method="_onFull"]

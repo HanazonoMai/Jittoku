@@ -95,7 +95,8 @@ offset_left = 1090.0
 offset_top = 764.0
 offset_right = 1279.0
 offset_bottom = 832.0
-target = "uid://b6t7oi3iurkn3"
+target = "uid://btln70s42br1k"
+spawnPoint = "nueDoor"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_cwdii")]
 position = Vector2(1182, 977)

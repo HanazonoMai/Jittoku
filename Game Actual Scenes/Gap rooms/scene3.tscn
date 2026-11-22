@@ -90,7 +90,8 @@ offset_left = 1502.0
 offset_top = 688.0
 offset_right = 1691.0
 offset_bottom = 756.0
-target = "uid://b6t7oi3iurkn3"
+target = "uid://btln70s42br1k"
+spawnPoint = "gapDoor"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("6_xupdo")]
 position = Vector2(1603, 588)
