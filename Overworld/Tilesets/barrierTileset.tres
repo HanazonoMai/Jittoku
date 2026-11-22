@@ -1,0 +1,34 @@
+[gd_resource type="TileSet" format=3 uid="uid://dxhgcaiw0uhss"]
+
+[ext_resource type="Texture2D" uid="uid://bjlsequmbro3r" path="res://Overworld/Tilesets/emptyTile.png" id="1_0yc0v"]
+[ext_resource type="Texture2D" uid="uid://cx2hho3lqmwy1" path="res://Overworld/Tilesets/HIFUUFLOORBARRIER.webp" id="2_jh2vl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnw51"]
+texture = ExtResource("1_0yc0v")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyp37"]
+texture = ExtResource("2_jh2vl")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 128
+sources/0 = SubResource("TileSetAtlasSource_pnw51")
+sources/1 = SubResource("TileSetAtlasSource_qyp37")
