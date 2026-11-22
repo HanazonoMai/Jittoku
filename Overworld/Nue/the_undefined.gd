@@ -373,7 +373,7 @@ func attack() -> void:
 	pass
 
 func swapScene(newScene):
-	SceneTransition.exit()
+	SceneTransition.teethClose()
 	await get_tree().create_timer(1).timeout
 	get_tree().root.add_child(newScene)
 	get_tree().current_scene.queue_free()
@@ -390,7 +390,7 @@ func swapScene(newScene):
 	#newScene.add_child(player)
 	#player.transfer_global_position(_spawnPoint.global_position)
 	
-	SceneTransition.enter()
+	SceneTransition.teethOpen()
 
 func _on_roaming_timer_timeout() -> void:
 	if behavior == 0:
