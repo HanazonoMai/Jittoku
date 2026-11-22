@@ -1,7 +1,7 @@
 [style name="our style"]
 join renko leftmost
 renko: Great, where am I now? This place definitely isn’t the TORIFUNE anymore. And it’s super…creepy. I feel like I’m being watched. I swear I see eyes everywhere.
-join merry leftmost
+join merry right
 merry: …
 renko: Huh? Merry?! Is that you?!
 merry: …
@@ -11,7 +11,7 @@ merry: Merry? What’s wrong?
 unknown: She can’t hear you at the moment.
 renko: ?!
 unknown: Hello, Ms. Usami. Please let me promptly introduce myself.
-join yukari left
+join yukari rightmost
 yukari: I am Yukari Yakumo, or the mastermind behind this minor incident. And it's a pleasure to make your acquaintance.
 renko: Well I'm not pleased! Why did you drag us here and what have you done to Merry?!
 yukari: Fufufu. My, my you’re so upset. Ms. Hearn is just sleeping. As for yourself, why not just sit down for a few minutes? Rest your weary legs.

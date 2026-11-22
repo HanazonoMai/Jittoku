@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="3_s4and"]
 [ext_resource type="TileSet" uid="uid://dxhgcaiw0uhss" path="res://Overworld/Tilesets/barrierTileset.tres" id="4_1877u"]
 [ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="5_7cu3d"]
-[ext_resource type="PackedScene" uid="uid://dvh30xtsa3ep0" path="res://Overworld/sceneSwitcherTransparent.tscn" id="6_wjr51"]
 [ext_resource type="Texture2D" uid="uid://ddv4k60d1e35x" path="res://Overworld/eiki_overworld.png" id="7_da5w5"]
 [ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="8_m13vo"]
+[ext_resource type="Texture2D" uid="uid://dv6m3ebi7t3tk" path="res://Overworld/Maribel/maribel_overworld.png" id="8_oaamr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("2_rsqd0")
@@ -59,6 +59,66 @@ tile_size = Vector2i(32, 64)
 physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5qje"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7ncx"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6817"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdjy4"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5wtp"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfcjo"]
+atlas = ExtResource("8_oaamr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rsqd0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5qje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7ncx")
+}],
+"loop": 1,
+"name": &"walkDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6817")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdjy4")
+}],
+"loop": 1,
+"name": &"walkSide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5wtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfcjo")
+}],
+"loop": 1,
+"name": &"walkUp",
+"speed": 5.0
+}]
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_oaamr")
 
@@ -87,15 +147,7 @@ position = Vector2(928, 480)
 [node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
 position = Vector2(1088, 496)
 
-[node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("6_wjr51")]
-offset_left = 704.0
-offset_top = -576.0
-offset_right = 1152.0
-offset_bottom = -544.0
-target = "uid://btln70s42br1k"
-spawnPoint = "eikiDoor"
-
-[node name="EikiOverworld" type="Sprite2D" parent="." unique_id=1116827875]
+[node name="YukariOverworld" type="Sprite2D" parent="." unique_id=1116827875]
 visible = false
 position = Vector2(929, -612)
 scale = Vector2(2, 2)
@@ -106,3 +158,11 @@ offset_left = 702.0
 offset_top = -524.0
 offset_right = 1152.0
 offset_bottom = -492.0
+dialogueName = "uid://cfmvuyg3d1wdg"
+cutsceneID = "ending"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1768937244]
+position = Vector2(926, -569)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_rsqd0")
+animation = &"walkDown"
