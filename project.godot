@@ -48,22 +48,22 @@ SceneTransition="*uid://bkij6lxw3m3qx"
 [dialogic]
 
 directories/dch_directory={
-"Dialogue/doremy": "res://Dialogue/doremy.dch",
-"Dialogue/eiki": "res://Dialogue/eiki.dch",
-"Dialogue/merry": "res://Dialogue/merry.dch",
-"Dialogue/nue": "res://Dialogue/nue.dch",
-"Dialogue/renko": "res://Dialogue/renko.dch",
-"Dialogue/unknown": "res://Dialogue/unknown.dch",
-"Dialogue/yukari": "res://Dialogue/yukari.dch",
-"MeetingEiki": "res://Dialogue/MeetingEiki.dch"
+"MeetingEiki": "res://Dialogue/MeetingEiki.dch",
+"doremy": "res://Dialogue/doremy.dch",
+"eiki": "res://Dialogue/eiki.dch",
+"merry": "res://Dialogue/merry.dch",
+"nue": "res://Dialogue/nue.dch",
+"renko": "res://Dialogue/renko.dch",
+"unknown": "res://Dialogue/unknown.dch",
+"yukari": "res://Dialogue/yukari.dch"
 }
 directories/dtl_directory={
-"Dialogue/opening": "res://Dialogue/opening.dtl",
 "MeetingDoremy": "res://Dialogue/MeetingDoremy.dtl",
 "MeetingEiki": "res://Dialogue/MeetingEiki.dtl",
 "MerryTaken": "res://Dialogue/MerryTaken.dtl",
 "NueTalk": "res://Dialogue/NueTalk.dtl",
 "YukariTalkandEnding": "res://Dialogue/YukariTalkandEnding.dtl",
+"opening": "res://Dialogue/opening.dtl",
 "testline": "res://testline.dtl"
 }
 layout/style_directory={
