@@ -137,6 +137,8 @@ offset_left = 702.0
 offset_top = -524.0
 offset_right = 1152.0
 offset_bottom = -492.0
+dialogueName = "uid://bwbyp8qhrb7wx"
+cutsceneID = "eiki"
 
 [connection signal="full" from="fakeSensor" to="sensor" method="unload"]
 [connection signal="full" from="fakeSensor" to="sensor3" method="unload"]

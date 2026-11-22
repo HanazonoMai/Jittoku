@@ -62,6 +62,24 @@ tile_size = Vector2i(32, 64)
 physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
+[sub_resource type="GDScript" id="GDScript_jjhgu"]
+script/source = "extends Area2D
+
+@onready var player = $\"../playerOverworld\"
+
+func _on_body_entered(body: Node2D) -> void:
+	if not (body is PlayerOverworld):
+		return
+	if KeyManager.hasCutscenePlayed(\"gaps\"):
+		return
+	KeyManager.setCutscene(\"gaps\")
+	set_deferred(\"monitoring\", false)
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txr1x"]
+size = Vector2(268, 230.99995)
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_83wff")
 music = ExtResource("2_0713l")
@@ -157,7 +175,18 @@ position = Vector2(1213, 1019)
 [node name="dropPoint" type="Marker2D" parent="." unique_id=2094984717]
 position = Vector2(1186, 420)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=2055597165]
+position = Vector2(1183, 115)
+scale = Vector2(1, 0.99999994)
+monitorable = false
+script = SubResource("GDScript_jjhgu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=683935114]
+position = Vector2(1, 119.50009)
+shape = SubResource("RectangleShape2D_txr1x")
+
 [connection signal="full" from="sensor" to="door" method="_onFull"]
 [connection signal="full" from="sensor" to="door2" method="_onFull"]
 [connection signal="full" from="sensor2" to="door" method="_onFull"]
 [connection signal="full" from="sensor2" to="door3" method="_onFull"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
