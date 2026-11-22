@@ -29,8 +29,8 @@ func swapScene(newScene):
 	else:
 		_spawnPoint = newScene.get_node("spawnPoints/" + spawnPoint)
 		
-	var player = player_scene.instantiate()
-	newScene.add_child(player)
-	player.transfer_global_position(_spawnPoint.global_position)
+	#var player = player_scene.instantiate()
+	#newScene.add_child(player)
+	#player.transfer_global_position(_spawnPoint.global_position)
 	
 	SceneTransition.enter()

@@ -187,6 +187,7 @@ collision_mask = 2048
 [node name="Sounds" type="Node2D" parent="." unique_id=1725159982]
 
 [node name="Footsteps" parent="Sounds" unique_id=1531425362 instance=ExtResource("8_m5cj3")]
+volume_db = 7.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2040904867]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bfmk0vcvgovc0"
+path="res://.godot/imported/bad sound.ogg-a50cc0a144129512c408bea22c82a9bd.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sound/bad sound.ogg"
+dest_files=["res://.godot/imported/bad sound.ogg-a50cc0a144129512c408bea22c82a9bd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

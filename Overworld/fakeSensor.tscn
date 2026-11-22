@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b3hlq5n78fxpe" path="res://Overworld/fakeSensor.gd" id="1_bsxs8"]
 [ext_resource type="Texture2D" uid="uid://det6u5rnxrcdl" path="res://Overworld/sensor_full.png" id="2_bsxs8"]
 [ext_resource type="AudioStream" uid="uid://bun6l5u50i5e5" path="res://Sound/pluck.ogg" id="3_w5sru"]
-[ext_resource type="AudioStream" uid="uid://ra78qekqc18p" path="res://Sound/good sound.ogg" id="4_4yaft"]
+[ext_resource type="AudioStream" uid="uid://bfmk0vcvgovc0" path="res://Sound/bad sound.ogg" id="4_4yaft"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
 radius = 8.062258
@@ -53,7 +53,7 @@ volume_db = 4.0
 
 [node name="Wrong" type="AudioStreamPlayer2D" parent="." unique_id=170319128]
 stream = ExtResource("4_4yaft")
-pitch_scale = 0.01
+volume_db = 5.0
 bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_onAreaEntered"]

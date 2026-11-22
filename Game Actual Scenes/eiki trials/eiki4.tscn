@@ -94,6 +94,7 @@ target = "uid://bh6m1emad843"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("7_pm57v")]
 position = Vector2(920, -112)
+toUnlock = 3
 
 [node name="fakeSensor" parent="." unique_id=1941800079 instance=ExtResource("8_iq87h")]
 position = Vector2(800, 288)
