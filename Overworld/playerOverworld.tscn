@@ -123,6 +123,7 @@ shadow_size = 8
 shadow_offset = Vector2(4, 8)
 
 [node name="playerOverworld" type="CharacterBody2D" unique_id=219719093 groups=["player"]]
+y_sort_enabled = true
 collision_mask = 147
 script = ExtResource("1_q2cw2")
 movementSpeed = 190

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://1twqowpwuhjg"]
+
+[ext_resource type="Texture2D" uid="uid://c04wq286psvsd" path="res://Overworld/WallLight/spread_6_128_120_50_50.png" id="1_0sdir"]
+
+[node name="wallLight" type="PointLight2D" unique_id=1354274070]
+scale = Vector2(1.3177776, 2.3093262)
+energy = 2.4
+texture = ExtResource("1_0sdir")

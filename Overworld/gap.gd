@@ -23,6 +23,8 @@ var maxCharge = 25
 @export var fillSpeed: float = 50
 var bodiesInZone: int = 0
 
+var monitored_follower: FollowerOverworld = null
+
 func _ready():
 	original_position = position
 	refresh_state(false)
@@ -122,7 +124,18 @@ func _onInnerEntered(_body: Node2D) -> void:
 			if teleport_target is Gap:
 				teleport_target.sleep()
 			teleport(_body, teleport_target.position)
+			if _body.follower != null:
+				#move the follower to the gap and get them teleported
+				monitored_follower = _body.follower
+				monitored_follower.set_independent_movement_target(global_position)
+				monitored_follower.independent_movement_position_reached.connect(_on_follower_inside_the_gap)
 
+func _on_follower_inside_the_gap() -> void:
+	monitored_follower.global_position = teleport_target.global_position
+	print("teleporting Merry")
+	monitored_follower.independent_movement_position_reached.disconnect(_on_follower_inside_the_gap)
+	monitored_follower.reunite_with_leader()
+	monitored_follower = null
 
 func _onOuterEntered(_body: Node2D) -> void:
 	bodiesInZone += 1

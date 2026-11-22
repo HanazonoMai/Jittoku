@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ba65w447xm6yg"
-path="res://.godot/imported/focus_3_128_10_0_0.png-b4dfc205543b96cb58b8464bc3863dc1.ctex"
+uid="uid://c04wq286psvsd"
+path="res://.godot/imported/spread_6_128_120_50_50.png-5b9c5ae9b4dd1580a4c0300ef123ca72.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Overworld/Flashlight/focus_3_128_10_0_0.png"
-dest_files=["res://.godot/imported/focus_3_128_10_0_0.png-b4dfc205543b96cb58b8464bc3863dc1.ctex"]
+source_file="res://Overworld/WallLight/spread_6_128_120_50_50.png"
+dest_files=["res://.godot/imported/spread_6_128_120_50_50.png-5b9c5ae9b4dd1580a4c0300ef123ca72.ctex"]
 
 [params]
 

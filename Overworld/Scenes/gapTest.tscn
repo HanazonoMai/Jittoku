@@ -84,6 +84,7 @@ terrain_set_0/terrain_0/color = Color(0.6700787, 0.74089664, 0.97025543, 1)
 sources/0 = SubResource("TileSetAtlasSource_riv4e")
 
 [node name="testScene" type="Node2D" unique_id=367241156]
+y_sort_enabled = true
 script = ExtResource("1_s0i3l")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
@@ -91,7 +92,6 @@ visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
 
 [node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("3_cfm1d")]
-y_sort_enabled = true
 position = Vector2(488, 272)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]

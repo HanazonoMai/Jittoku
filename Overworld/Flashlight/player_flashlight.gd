@@ -14,10 +14,10 @@ signal battery_charge_changed(charge)
 @export_range(0.0, 1.0) var focus_mode_falloff:float
 @export_range(0.0, 1.0) var focus_mode_angular_falloff:float
 @export_category("Battery")
-@export var maxBattery: float = 100.0
 @export var spread_drain_rate: float = 0.6
 @export var focused_drain_rate: float = 0.6
-@export var battery: float = 100.0
+var maxBattery: float = 100.0
+var battery: float = 100.0
 var modes: Array[Texture2D]
 var current_mode: int = 0 #0: off 1: Spread 2: Focus
 
@@ -33,6 +33,8 @@ func _enter_tree() -> void:
 	check_and_load_beams()
 
 func _ready() -> void:
+	maxBattery = PlayerData.max_flashlight_battery
+	battery = PlayerData.flashlight_battery
 	make_beam_collision_boxes()
 	spread_light.texture = modes[0]
 	focus_light.texture = modes[1]
@@ -91,11 +93,13 @@ func set_focus() -> void:
 
 func drainBattery(delta: float) -> void:
 	battery = max(0.0, battery - drain_rate * delta)
+	PlayerData.set_flashlight_battery(battery)
 	battery_charge_changed.emit(battery) 
 
 func addBattery(amount: float) -> void:
 	battery = min(maxBattery, battery + amount)
-	battery_charge_changed.emit(battery) 
+	PlayerData.set_flashlight_battery(battery)
+	battery_charge_changed.emit(battery)
 
 func make_beam_collision_boxes() -> void:
 	var points_spread = create_beam_collision_box(spread_mode_range, spread_mode_angle, spread_mode_falloff, spread_mode_angular_falloff)
