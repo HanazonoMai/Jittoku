@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://drw8n2vepq2o1" path="res://Overworld/Nue/the_undefined.gd" id="1_bsmgh"]
 [ext_resource type="Texture2D" uid="uid://bqv6hsula7jay" path="res://Overworld/Nue/HIFUUNUCHI.png" id="2_1ftcn"]
+[ext_resource type="PackedScene" uid="uid://dhsra6h0aaddq" path="res://Overworld/footstepPlayer.tscn" id="3_aflxf"]
+[ext_resource type="AudioStream" uid="uid://cg6ntw5tpdytg" path="res://Sound/growls.tres" id="4_t55ac"]
+[ext_resource type="AudioStream" uid="uid://fvoxkpn302r4" path="res://Sound/snarlgrowl.ogg" id="5_qhohm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n21f0"]
 
@@ -66,6 +69,22 @@ text = "behavior"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=308010852]
 shape = SubResource("CapsuleShape2D_xmnp2")
+
+[node name="Footsteps" parent="." unique_id=1531425362 instance=ExtResource("3_aflxf")]
+pitch_scale = 0.37
+max_distance = 500.0
+
+[node name="Growl" parent="." unique_id=819291767 instance=ExtResource("3_aflxf")]
+stream = ExtResource("4_t55ac")
+pitch_scale = 1.17
+max_distance = 750.0
+step_interval = 7.0
+
+[node name="Snarl" parent="." unique_id=1014094729 instance=ExtResource("3_aflxf")]
+stream = ExtResource("5_qhohm")
+pitch_scale = 0.9
+max_distance = 750.0
+step_interval = 5.0
 
 [connection signal="area_entered" from="FarDetectionArea" to="." method="_on_far_detection_area_area_entered"]
 [connection signal="area_entered" from="CloseDetectionArea" to="." method="_on_close_detection_area_area_entered"]

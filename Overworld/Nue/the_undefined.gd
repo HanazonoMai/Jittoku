@@ -60,6 +60,10 @@ enum Behavior {
 @onready var outrunning_timer = $OutrunningTimer
 @onready var stalking_timer = $StalkingTimer
 
+@onready var footsteps = $Footsteps
+@onready var growl = $Growl
+@onready var snarl = $Snarl
+
 var parent_room : Node
 
 var is_currently_outrun: bool
@@ -192,6 +196,10 @@ func move_forwards(delta: float) -> void:
 
 func move_forward_simple(delta: float):
 	#var amount = min(current_speed, global_position.distance_to(temporary_target_position))
+	footsteps.step_interval = lerp(1.0, 0.25, clamp(current_speed/200.0, 0.0, 1.0))
+	footsteps.volume_db = lerp(6, 8, clamp(current_speed/200.0, 0.0, 1.0))
+	if current_speed >= 40:
+		footsteps.play_step()
 	velocity = current_speed*(temporary_target_position-global_position).normalized()
 	move_and_slide()
 
@@ -240,6 +248,10 @@ func set_roaming_target() -> void:
 	roaming_timer.start(random_roaming_time)
 
 func roaming(delta: float) -> void:
+	snarl.pitch_scale = 1.0
+	if snarl.timer.is_stopped():
+		snarl.timer.wait_time = randf_range(7, 13)
+	snarl.play_step()
 	pass
 	# move_to(delta, temporary_target_position, 0)
 
@@ -258,6 +270,10 @@ func start_checking_sensor(sensor: StaticBody2D) -> void:
 	#stopping = false
 
 func checking_sensor(delta: float) -> void:
+	snarl.pitch_scale = 1.2
+	if snarl.timer.is_stopped():
+		snarl.timer.wait_time = randf_range(5, 7)
+	snarl.play_step()
 	var d = global_position.distance_to(target.global_position)
 	if d > 1.5* sensor_observation_distance:
 		pass
@@ -281,6 +297,10 @@ func start_checking_flashlight_beam() -> void:
 	#stopping = false
 
 func checking_flashlight_beam(delta: float) -> void:
+	snarl.pitch_scale = 1.5
+	if snarl.timer.is_stopped():
+		snarl.timer.wait_time = randf_range(3, 5)
+	snarl.play_step()
 	if PlayerData.flashlight_on == true:
 		temporary_target_position = target.global_position
 	else:
@@ -309,6 +329,8 @@ func checking_flashlight_beam(delta: float) -> void:
 
 # stalking player
 func start_stalking_player() -> void:
+	growl.play()
+	growl.timer.wait_time = randf_range(2, 3)
 	behavior = 3
 	$Label.text = "Stalking"
 	speed_regime = 1
@@ -320,6 +342,9 @@ func start_stalking_player() -> void:
 	#stopping = false
 
 func stalking(delta: float) -> void:
+	if growl.timer.is_stopped():
+		growl.timer.wait_time = randf_range(4, 7)
+	growl.play_step()
 	temporary_target_position = target.global_position
 	var d = global_position.distance_to(target.global_position)
 	if d > max_stalking_distance:
@@ -363,6 +388,8 @@ func stalking(delta: float) -> void:
 		
 # attacking player
 func start_attacking_player() -> void:
+	growl.volume_db = growl.volume_db*2.0
+	growl.play()
 	behavior = 4
 	$Label.text = "Attacking"
 	speed_regime = 2
