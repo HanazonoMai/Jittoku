@@ -35,3 +35,4 @@ func swapScene(newScene):
 	#player.transfer_global_position(_spawnPoint.global_position)
 	
 	SceneTransition.enter()
+	PlayerData.make_save_state()

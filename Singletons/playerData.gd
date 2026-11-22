@@ -16,6 +16,22 @@ var max_flashlight_battery: float = 100.0
 var flashlight_battery: float = 100.0
 var flashlight_on: bool = false
 
+var save_state: Array = []
+
+func make_save_state() -> void:
+	save_state = []
+	save_state.append(player_spawn_handled_by_scene_switcher)
+	save_state.append(followed_by_merry)
+	save_state.append(max_flashlight_battery)
+	save_state.append(flashlight_battery)
+
+func load_save_state() -> void:
+	if save_state.is_empty() == false:
+		player_spawn_handled_by_scene_switcher = save_state[0]
+		followed_by_merry = save_state[1]
+		max_flashlight_battery = save_state[2]
+		flashlight_battery = save_state[3]
+
 func _process(delta: float) -> void:
 	totalPlaytime += delta
 

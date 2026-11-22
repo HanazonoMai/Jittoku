@@ -81,3 +81,6 @@ func summon_merry() -> void:
 	follower = merry
 	#is_followed_by_merry = true
 	#sync_merry()
+
+
+		
