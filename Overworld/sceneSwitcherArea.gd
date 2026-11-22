@@ -16,6 +16,8 @@ func _on_body_entered(_body) -> void:
 	call_deferred("swapScene", newScene)
 	
 func swapScene(newScene):
+	SceneTransition.exit()
+	await get_tree().create_timer(1).timeout
 	get_tree().root.add_child(newScene)
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = newScene
@@ -30,3 +32,5 @@ func swapScene(newScene):
 	var player = player_scene.instantiate()
 	newScene.add_child(player)
 	player.transfer_global_position(_spawnPoint.global_position)
+	
+	SceneTransition.enter()
