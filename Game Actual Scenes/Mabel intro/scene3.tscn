@@ -63,6 +63,7 @@ sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 script = ExtResource("1_hc6kg")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
+visible = false
 color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
@@ -92,7 +93,7 @@ target = "uid://dfsn2lw5lkyyj"
 position = Vector2(1856, -48)
 
 [node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("8_ccbx0")]
-position = Vector2(2240, 512)
+position = Vector2(2242, 488)
 
 [node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("9_epon8")]
 position = Vector2(1856, 640)
