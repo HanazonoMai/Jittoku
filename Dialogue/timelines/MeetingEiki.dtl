@@ -1,9 +1,10 @@
-join renko center
+[style name="our style"]
+join Dialogue/renko left
 renko: I don’t know how much more of this I can take. Between all these trials, and puzzles, and that creature chasing after me.
 renko: But I have to keep going. I know she’s waiting for me.
-join eiki center
 unknown: I see your resolve is being tested. Has this temporal space grown to be too much of a burden on you?
 renko: Great, another weirdo is here. I don’t have time for this. Just hurry up and get on with it.
+join Dialogue/eiki center
 eiki: Very well. I am Eiki Shiki, Yamaxanadu. And do not worry, I already know your name, Renko Usami.
 renko: Huh? How did you-
 renko: You know what, nevermind. You already knowing my name is the least of my worries.

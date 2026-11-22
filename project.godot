@@ -59,8 +59,8 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "Dialogue/opening": "res://Dialogue/opening.dtl",
-"MeetingDoremy": "res://Dialogue/MeetingDoremy.dtl",
-"MeetingEiki": "res://Dialogue/MeetingEiki.dtl",
+"MeetingDoremy": "res://Dialogue/timelines/MeetingDoremy.dtl",
+"MeetingEiki": "res://Dialogue/timelines/MeetingEiki.dtl",
 "MerryTaken": "res://Dialogue/MerryTaken.dtl",
 "NueTalk": "res://Dialogue/NueTalk.dtl",
 "YukariTalkandEnding": "res://Dialogue/YukariTalkandEnding.dtl",
