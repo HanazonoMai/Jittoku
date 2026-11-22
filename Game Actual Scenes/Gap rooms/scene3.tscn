@@ -73,12 +73,14 @@ func _on_body_entered(body: Node2D) -> void:
 	if KeyManager.hasCutscenePlayed(\"gaps\"):
 		return
 	KeyManager.setCutscene(\"gaps\")
+	#KeyManager.setCutscene(\"eiki\")
+	#KeyManager.setCutscene(\"nue\")
 	set_deferred(\"monitoring\", false)
 	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txr1x"]
-size = Vector2(268, 230.99995)
+size = Vector2(268, 94.99992)
 
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_83wff")
@@ -107,7 +109,7 @@ tile_set = ExtResource("5_jjhgu")
 position = Vector2(-1, 443)
 
 [node name="playerOverworld" parent="." unique_id=219719093 instance=ExtResource("5_0713l")]
-position = Vector2(-3, 445)
+position = Vector2(-3, 442)
 
 [node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("5_r7i23")]
 offset_left = 1502.0
@@ -118,7 +120,7 @@ target = "uid://btln70s42br1k"
 spawnPoint = "gapDoor"
 
 [node name="door" parent="." unique_id=305306244 instance=ExtResource("6_xupdo")]
-position = Vector2(1603, 588)
+position = Vector2(1600, 576)
 toUnlock = 2
 
 [node name="door2" parent="." unique_id=663078148 instance=ExtResource("6_xupdo")]
@@ -176,13 +178,13 @@ position = Vector2(1213, 1019)
 position = Vector2(1186, 420)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2055597165]
-position = Vector2(1183, 115)
+position = Vector2(1619, 615)
 scale = Vector2(1, 0.99999994)
 monitorable = false
 script = SubResource("GDScript_jjhgu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=683935114]
-position = Vector2(1, 119.50009)
+position = Vector2(1, 51.50006)
 shape = SubResource("RectangleShape2D_txr1x")
 
 [connection signal="full" from="sensor" to="door" method="_onFull"]
