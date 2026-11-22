@@ -61,6 +61,7 @@ directories/dtl_directory={
 "MeetingEiki": "res://MeetingEiki.dtl",
 "MerryTaken": "res://MerryTaken.dtl",
 "NueTalk": "res://NueTalk.dtl",
+"YukariTalkandEnding": "res://YukariTalkandEnding.dtl",
 "opening": "res://opening.dtl",
 "testline": "res://testline.dtl"
 }

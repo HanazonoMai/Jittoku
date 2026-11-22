@@ -1,20 +1,21 @@
 join renko center
 renko: Dammit, she's not here either. Where did you go Merry?
-renko: Now what am I supposed to do?!
+renko: What am I supposed to do now?!
 unknown: By the gods you’re a loud one.
 renko: Huh?! Who?!
 unknown: Oh good, you can hear me, which means-
 join doremy center
 unknown: You should be able to see me too.
-renko: Geez forget who, what the heck are you?! And what’s with that outfit. And is that a tail?
-unknown: Well…I see you’re pretty rude for a human, but considering your situation, I guess that's understandable. Don't worry, I'll give you my name.
+renko: Geez forget who, what the heck are you?! And what’s with that outfit. Is that a tail?
+unknown: Well…I see you’re pretty rude for a human, but considering your situation, I guess that's understandable. I, however, am not that rude so I will give you my name.
 \doremy: I am Doremy Sweet, the Ruler of Dreams. And it’s a pleasure to meet you.
 renko: Ruler…of dreams? Does this mean this place-
 \doremy: Is a dream? Well, yes and no.
 \doremy: One might call it more of a nightmare than a dream, but the border between them is very, very minor so it’s easy to pass between the two, both accidentally and intentionally.
-renko: Dreams? Boarders? Ugh! Whatever, I don't care. Where’s Merry?! What have you done with my friend?!
+renko: Dreams? Boarders? All of this sounds way too familiar. Ugh! Whatever, I don't care. Where’s Merry?! What have you done with my friend?!
 \doremy: Oh, I haven’t done anything with her.
-\doremy: You need to talk to the mastermind behind this incident to find her, I’m only here to guide you. A friendly baku guide!
+renko: Huh, then who-
+\doremy: You need to talk to the mastermind behind this incident for that. I'm only here to guide you, your friendly baku guide!
 renko: A baku…so you’re a youkai. Wait, were you the thing making those weird noises earlier?
 \doremy: Noises? No, no. I just got here, so that wasn’t me. And personally I have no idea what it could be either.
 renko: Great…so I still have to worry about that thing too. But whatever, what do you mean you’re my guide?
@@ -24,10 +25,12 @@ renko: So Merry is being held hostage for some sort of game?!
 \doremy: Yes.
 renko: Grr…Fine, what do I have to do? What are these trials?
 \doremy: You just need to wander around and solve a few puzzles, no big deal really.
-\doremy: Well, you might undergo some deep trauma and horrors beyond human understanding but you should, probably, be fine. Nothing physical should happen to you at least.
+\doremy: Well, you might undergo some deep, internal trauma and horrors beyond human understanding but you should, probably, be fine. Nothing physical should happen to you at least.
 renko: How comforting…
 \doremy: That’s the spirit!
-\doremy: The best advice I can give you right now is to head down that hallway over there. I’ll be in this room if you have any more questions for me.
+renko: Ugh…
+\doremy: The best advice I can give you right now is to head down that hallway over there. I'll stay here and provide emotional support every time you see my cute face!
 renko: Okay. Thanks, I guess.
 leave renko
-\doremy: …I hope that creature she mentioned isn’t anything serious. I wasn’t told to add anything like that.
+\doremy: …
+\doremy: I hope that creature she mentioned isn’t anything serious. I wasn’t told to add anything like that.
