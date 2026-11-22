@@ -121,6 +121,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crb23"]
 size = Vector2(22, 26)
 
+[sub_resource type="GDScript" id="GDScript_8n7py"]
+script/source = "extends Area2D
+
+func interact():
+	get_parent().interact()
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_f6a36"]
 radius = 17.528547
 
@@ -153,6 +160,7 @@ bus = &"SFX"
 collision_layer = 4
 collision_mask = 4
 monitorable = false
+script = SubResource("GDScript_8n7py")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionBox" unique_id=113161668]
 position = Vector2(0, 2)
