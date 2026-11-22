@@ -27,6 +27,7 @@ func swapScene(newScene):
 	if spawnPoint == "":
 		_spawnPoint = newScene.get_node("spawnPoint")
 	else:
+		newScene.spawnPointUsed = spawnPoint
 		_spawnPoint = newScene.get_node("spawnPoints/" + spawnPoint)
 		
 	#var player = player_scene.instantiate()

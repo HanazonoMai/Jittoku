@@ -379,13 +379,12 @@ func swapScene(newScene):
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = newScene
 	newScene.set_y_sort_enabled(true)
-	var spawnPoint = "" # TODO: use the one that we first spawned from
 	var _spawnPoint
 	
-	if spawnPoint == "":
+	if parent_room.spawnPointUsed == "":
 		_spawnPoint = newScene.get_node("spawnPoint")
 	else:
-		_spawnPoint = newScene.get_node("spawnPoints/" + spawnPoint)
+		_spawnPoint = newScene.get_node("spawnPoints/" + parent_room.spawnPointUsed)
 		
 	#var player = player_scene.instantiate()
 	#newScene.add_child(player)
