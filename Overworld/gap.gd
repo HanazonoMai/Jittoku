@@ -74,6 +74,7 @@ func flee():
 
 func flee_hide(how_long := -1.0):
 	open = false
+	$Sounds/Flee.play()
 	emit_briefly()
 	if how_long < 0.0:
 		how_long = flee_time
