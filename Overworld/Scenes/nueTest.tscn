@@ -1,0 +1,116 @@
+[gd_scene format=4 uid="uid://b1ppdwjxujx4y"]
+
+[ext_resource type="Script" uid="uid://dmht3dyok4j5n" path="res://Overworld/Scenes/overworldScene.gd" id="1_gh5ih"]
+[ext_resource type="Texture2D" uid="uid://dohju6muhpxji" path="res://Overworld/Tilesets/HIFUUFLOOR.png" id="2_js1bg"]
+[ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="3_ofk31"]
+[ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="4_8ruyf"]
+[ext_resource type="PackedScene" uid="uid://dvh30xtsa3ep0" path="res://Overworld/sceneSwitcherTransparent.tscn" id="5_jvjka"]
+[ext_resource type="PackedScene" uid="uid://mtqc0nl07ph" path="res://Overworld/door.tscn" id="6_ew0fj"]
+[ext_resource type="PackedScene" uid="uid://costleipeklmp" path="res://Overworld/sensor.tscn" id="7_0ue8a"]
+[ext_resource type="PackedScene" uid="uid://b2r0y8jx6rwuq" path="res://Overworld/chargeStation.tscn" id="8_8byap"]
+[ext_resource type="PackedScene" uid="uid://bsopwv2eyksvw" path="res://Overworld/Nue/the_undefined.tscn" id="9_gewkk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
+texture = ExtResource("2_js1bg")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+1:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+0:0/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_iefw6"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 128
+sources/3 = SubResource("TileSetAtlasSource_lh8g8")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gqs0p"]
+texture = ExtResource("3_ofk31")
+texture_region_size = Vector2i(32, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+7:0/0 = 0
+7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+9:0/0 = 0
+9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -32, 16, -32, 16, 32, -16, 32)
+
+[sub_resource type="TileSet" id="TileSet_1ptfn"]
+tile_size = Vector2i(32, 64)
+physics_layer_0/collision_layer = 128
+sources/1 = SubResource("TileSetAtlasSource_gqs0p")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ptfn"]
+size = Vector2(64, 432)
+
+[node name="testScene" type="Node2D" unique_id=367241156]
+script = ExtResource("1_gh5ih")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1013779236]
+visible = false
+color = Color(0.15384997, 0.06299999, 0.3, 0.7882353)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=860626]
+z_index = -16
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAOAAYAAwACAAMAAAAOAAcAAwACAAMAAAAOAAgAAwACAAMAAAAOAAkAAwACAAMAAAAOAAoAAwACAAMAAAAPAAYAAwACAAMAAAAPAAcAAwACAAMAAAAPAAgAAwACAAMAAAAPAAkAAwACAAMAAAAPAAoAAwACAAMAAAAQAAYAAwACAAMAAAAQAAcAAwACAAMAAAAQAAgAAwACAAMAAAAQAAkAAwACAAMAAAAQAAoAAwACAAMAAAARAAYAAwACAAMAAAARAAcAAwACAAMAAAARAAgAAwACAAMAAAARAAkAAwACAAMAAAARAAoAAwACAAMAAAASAAYAAwACAAMAAAASAAcAAwACAAMAAAASAAgAAwACAAMAAAASAAkAAwACAAMAAAASAAoAAwACAAMAAAATAAYAAwACAAMAAAATAAcAAwACAAMAAAATAAgAAwACAAMAAAATAAkAAwACAAMAAAATAAoAAwACAAMAAAAUAAYAAwACAAMAAAAUAAcAAwACAAMAAAAUAAgAAwACAAMAAAAUAAkAAwACAAMAAAAUAAoAAwACAAMAAAAVAAYAAwACAAMAAAAVAAcAAwACAAMAAAAVAAgAAwACAAMAAAAVAAkAAwACAAMAAAAVAAoAAwACAAMAAAAWAAYAAwACAAMAAAAWAAcAAwACAAMAAAAWAAgAAwACAAMAAAAWAAkAAwACAAMAAAAWAAoAAwACAAMAAAAXAAYAAwACAAMAAAAXAAcAAwACAAMAAAAXAAgAAwACAAMAAAAXAAkAAwACAAMAAAAXAAoAAwACAAMAAAAYAAYAAwACAAMAAAAYAAcAAwACAAMAAAAYAAgAAwACAAMAAAAYAAkAAwACAAMAAAAYAAoAAwACAAMAAAAZAAYAAwACAAMAAAAZAAcAAwACAAMAAAAZAAgAAwACAAMAAAAZAAkAAwACAAMAAAAZAAoAAwACAAMAAAAaAAYAAwACAAMAAAAaAAcAAwACAAMAAAAaAAgAAwACAAMAAAAaAAkAAwACAAMAAAAaAAoAAwACAAMAAAAbAAYAAwACAAMAAAAbAAcAAwACAAMAAAAbAAgAAwACAAMAAAAbAAkAAwACAAMAAAAbAAoAAwACAAMAAAAcAAYAAwACAAMAAAAcAAcAAwACAAMAAAAcAAgAAwACAAMAAAAcAAkAAwABAAEAAAAcAAoAAwACAAEAAAAdAAYAAwACAAMAAAAdAAcAAwACAAMAAAAdAAgAAwACAAMAAAAdAAkAAwABAAAAAAAdAAoAAwACAAAAAAAeAAYAAwACAAMAAAAeAAcAAwACAAMAAAAeAAgAAwACAAMAAAAeAAkAAwACAAMAAAAeAAoAAwACAAMAAAAfAAYAAwAAAAIAAAAfAAcAAwAAAAIAAAAfAAgAAwAAAAIAAAAfAAkAAwAAAAIAAAAfAAoAAwAAAAIAAAAgAAYAAwAAAAIAAAAgAAcAAwAAAAIAAAAgAAgAAwAAAAIAAAAgAAkAAwAAAAIAAAAgAAoAAwAAAAIAAAAcAP//AwACAAMAAAAcAAAAAwACAAMAAAAcAAEAAwACAAMAAAAcAAIAAwACAAMAAAAcAAMAAwACAAMAAAAcAAQAAwACAAMAAAAdAP//AwACAAMAAAAdAAAAAwACAAMAAAAdAAEAAwACAAMAAAAdAAIAAwACAAMAAAAdAAMAAwACAAMAAAAdAAQAAwACAAMAAAAiAAcAAwAAAAEAAAAiAAgAAwAAAAEAAAAjAAcAAwAAAAEAAAAjAAgAAwAAAAEAAAAcAAUAAwACAAMAAAAdAAUAAwACAAMAAAA=")
+tile_set = SubResource("TileSet_iefw6")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=291176650]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAbAAIAAQAFAAAAAAAaAAIAAQAFAAAAAAAZAAIAAQAFAAAAAAAYAAIAAQAFAAAAAAAXAAIAAQAFAAAAAAAWAAIAAQAFAAAAAAAVAAIAAQAFAAAAAAAUAAIAAQAFAAAAAAATAAIAAQAFAAAAAAASAAIAAQAFAAAAAAARAAIAAQAFAAAAAAAQAAIAAQAFAAAAAAAPAAIAAQAFAAAAAAAOAAIAAQAFAAAAAAAeAAIAAQAFAAAAAAAfAAIAAQAFAAAAAAAgAAIAAQAFAAAAAAA=")
+tile_set = SubResource("TileSet_1ptfn")
+
+[node name="playerOverworld" parent="." unique_id=482381845 instance=ExtResource("4_8ruyf")]
+position = Vector2(1376, 512)
+
+[node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
+position = Vector2(944, 512)
+
+[node name="sceneSwitcherTransparent" parent="." unique_id=463992805 instance=ExtResource("5_jvjka")]
+offset_left = 1792.0
+offset_top = -128.0
+offset_right = 1920.0
+offset_bottom = -64.0
+target = "uid://dfsn2lw5lkyyj"
+
+[node name="door" parent="." unique_id=305306244 instance=ExtResource("6_ew0fj")]
+position = Vector2(1856, -48)
+
+[node name="sensor" parent="." unique_id=1195054767 instance=ExtResource("7_0ue8a")]
+position = Vector2(1691, 573)
+
+[node name="chargeStation" parent="." unique_id=1121453722 instance=ExtResource("8_8byap")]
+position = Vector2(1856, 640)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1234061186]
+position = Vector2(2144, 512)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=583862259]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_1ptfn")
+
+[node name="TheUndefined" parent="." unique_id=1947426764 instance=ExtResource("9_gewkk")]
+position = Vector2(1824, 404)
+
+[connection signal="full" from="sensor" to="door" method="_onFull"]
