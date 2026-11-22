@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi5lahowmw85p" path="res://Overworld/gap.gd" id="1_dumoa"]
 [ext_resource type="Texture2D" uid="uid://bqn5n42imo8w8" path="res://Overworld/gap.png" id="2_gxb0u"]
+[ext_resource type="Texture2D" uid="uid://dwlu1hw7cxm65" path="res://Overworld/smallEye.png" id="3_5lj3a"]
 [ext_resource type="AudioStream" uid="uid://dx80pdxxas8p2" path="res://Sound/WOOSH.ogg" id="3_gxb0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ptfn"]
@@ -58,14 +59,15 @@ texture = SubResource("GradientTexture2D_1ptfn")
 material = SubResource("CanvasItemMaterial_dumoa")
 emitting = false
 amount = 32
+texture = ExtResource("3_5lj3a")
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 30.0
 initial_velocity_max = 50.0
-scale_amount_min = 3.0
-scale_amount_max = 3.0
-color = Color(1, 0, 0, 1)
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+color = Color(1, 1, 1, 0.7019608)
 
 [node name="Sounds" type="Node2D" parent="." unique_id=16667626]
 
