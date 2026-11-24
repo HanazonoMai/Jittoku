@@ -83,7 +83,7 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	var tween = create_tween()
-	tween.tween_property(nue, \"global_position\", nuePoint.global_position, 0.5).set_ease(Tween.EASE_OUT)
+	tween.tween_property(nue, \"global_position\", nuePoint.global_position, 1.0).set_ease(Tween.EASE_OUT)
 	await tween.finished
 	nue.get_node(\"Growl\").process_mode = Node.PROCESS_MODE_ALWAYS
 	nue.get_node(\"Growl\").play()
@@ -133,7 +133,7 @@ position = Vector2(1185, 544)
 position = Vector2(1189, 547)
 
 [node name="nuePoint" type="Marker2D" parent="." unique_id=191834216]
-position = Vector2(1184, 486)
+position = Vector2(1184, 420)
 
 [node name="nuePoint2" type="Marker2D" parent="." unique_id=1684032925]
 position = Vector2(1195, 1384)
@@ -179,14 +179,14 @@ monitorable = false
 script = SubResource("GDScript_xmnp2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1975119038]
-position = Vector2(1, 119.50009)
+position = Vector2(1, 39.999992)
 shape = SubResource("RectangleShape2D_h36k4")
 
 [node name="CutsceneStarter" parent="." unique_id=40472308 instance=ExtResource("12_34a0r")]
-offset_left = 1091.0
-offset_top = 62.0
-offset_right = 1277.0
-offset_bottom = 94.0
+offset_left = 1093.0
+offset_top = -33.0
+offset_right = 1279.0
+offset_bottom = -1.0
 dialogueName = "uid://ccvd12eoynpct"
 cutsceneID = "nue"
 

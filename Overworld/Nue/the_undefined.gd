@@ -112,6 +112,7 @@ func _physics_process(delta: float) -> void:
 func find_player():
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
+		add_collision_exception_with(player)
 		var flashlight = player.get_node("Pivot/playerFlashlight")
 		flashlight.connect("flashlight_on", notice_flashlight.bind(player))
 

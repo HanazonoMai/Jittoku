@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-@export var chargeRate: float = .5
+@export var chargeRate: float = 2.5
 var player : Node2D
 
 var isCharging: bool = false

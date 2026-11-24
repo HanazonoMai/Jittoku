@@ -3,15 +3,15 @@
 [ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="1_f41j6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6a36"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0, 0, 0, 0.7529412)
 border_width_left = 6
 border_width_right = 6
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f6a36"]
 line_spacing = -3.09
 font = ExtResource("1_f41j6")
-font_color = Color(0, 0, 0, 1)
+font_size = 24
 
 [node name="clueBubble" type="Node2D" unique_id=167724094]
 z_index = 10
@@ -43,11 +43,12 @@ offset_right = 31.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_f6a36")
-text = "press
+text = "Hold
 ENTER"
 label_settings = SubResource("LabelSettings_f6a36")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1752574782]
+color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-5, 0, 5, 0, 0, 15)

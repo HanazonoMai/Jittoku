@@ -117,11 +117,11 @@ position = Vector2(1183, 128)
 teleport_target = NodePath("../dropPoint")
 
 [node name="gap3" parent="." unique_id=1741724968 node_paths=PackedStringArray("teleport_target") instance=ExtResource("10_job65")]
-position = Vector2(906, -210)
+position = Vector2(898, -162)
 teleport_target = NodePath("../gap4")
 
 [node name="gap4" parent="." unique_id=1958141483 node_paths=PackedStringArray("teleport_target") instance=ExtResource("10_job65")]
-position = Vector2(1480, -214)
+position = Vector2(1474, -161)
 teleport_target = NodePath("../gap3")
 
 [node name="dropPoint" type="Marker2D" parent="." unique_id=1059740348]
