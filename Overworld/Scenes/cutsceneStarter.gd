@@ -7,6 +7,8 @@ extends NinePatchRect
 
 var room : Node
 
+signal finished
+
 func _ready():
 	room = get_parent()
 
@@ -30,6 +32,7 @@ func start():
 func _timelineEnded():
 	Dialogic.timeline_ended.disconnect(_timelineEnded)
 	get_tree().paused = false
+	finished.emit()
 	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

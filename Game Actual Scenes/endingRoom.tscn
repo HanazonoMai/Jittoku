@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ddv4k60d1e35x" path="res://Overworld/eiki_overworld.png" id="7_da5w5"]
 [ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="8_m13vo"]
 [ext_resource type="Texture2D" uid="uid://dv6m3ebi7t3tk" path="res://Overworld/Maribel/maribel_overworld.png" id="8_oaamr"]
+[ext_resource type="PackedScene" uid="uid://co3tpkk01o00t" path="res://Overworld/gap.tscn" id="9_rsqd0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
 texture = ExtResource("2_rsqd0")
@@ -119,6 +120,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_xmnp2"]
+script/source = "extends Marker2D
+
+
+
+func ending(player : Node2D):
+	print(\"End\")
+	player.set_process(false)
+	player.set_process_input(false)
+	player.set_physics_process(false)
+	var tween = create_tween()
+	tween.tween_property(get_parent(), \"modulate\", Color.TRANSPARENT, 2.0)
+	tween.parallel().tween_property(player.get_node(\"CanvasLayer/ProgressBar\"), \"modulate\", Color.TRANSPARENT, 2.0)
+	tween.parallel().tween_property($\"../CanvasModulate\", \"color\", Color.WHITE, 2.0)
+	await tween.finished
+	var tween2 = create_tween()
+	tween2.tween_property($\"../creditsLayer/credits\", \"modulate\", Color.WHITE, 5.0)
+	
+"
+
 [node name="testScene" type="Node2D" unique_id=367241156]
 script = ExtResource("1_oaamr")
 
@@ -145,7 +166,7 @@ tile_set = ExtResource("4_1877u")
 position = Vector2(928, 480)
 
 [node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
-position = Vector2(1088, 496)
+position = Vector2(927, 495)
 
 [node name="YukariOverworld" type="Sprite2D" parent="." unique_id=1116827875]
 visible = false
@@ -166,3 +187,59 @@ position = Vector2(926, -569)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_rsqd0")
 animation = &"walkDown"
+
+[node name="gap" parent="." unique_id=1560568519 node_paths=PackedStringArray("teleport_target") instance=ExtResource("9_rsqd0")]
+position = Vector2(1009, -616)
+open = false
+teleport_target = NodePath("../endPoint")
+
+[node name="endPoint" type="Marker2D" parent="." unique_id=1140557666]
+position = Vector2(996, -2129)
+script = SubResource("GDScript_xmnp2")
+
+[node name="creditsLayer" type="CanvasLayer" parent="." unique_id=2014501118]
+
+[node name="credits" type="Control" parent="creditsLayer" unique_id=1624135172]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="creditsLayer/credits" unique_id=239138270]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="creditsLayer/credits/VBoxContainer" unique_id=1497960712]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=48]The Space Between Us[/font_size]
+
+[font_size=20][b]Art:[/b]
+Llamasyes
+Spectre
+vexkaf
+
+[b]Code:[/b]
+Goop
+Hanazono Mai
+Sheep (not a cat)
+
+[b]Music and sound:[/b]
+Hanazono Mai
+
+[b]Writing:[/b]
+SilvarusLupus[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+
+[connection signal="finished" from="CutsceneStarter" to="gap" method="set" binds= [&"open", true]]
+[connection signal="teleported" from="gap" to="endPoint" method="ending"]

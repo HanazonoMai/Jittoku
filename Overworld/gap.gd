@@ -25,6 +25,8 @@ var bodiesInZone: int = 0
 
 var monitored_follower: FollowerOverworld = null
 
+signal teleported(character : Node2D)
+
 func _ready():
 	original_position = position
 	refresh_state(false)
@@ -110,6 +112,7 @@ func teleport(character : Node2D, to : Vector2):
 	character.set_process(true)
 	position = temp_original_position
 	open = true
+	teleported.emit(character)
 
 func emit_briefly(how_long := 0.5):
 	$Particles.emitting = true
