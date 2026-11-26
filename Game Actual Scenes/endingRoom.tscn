@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://brweuixocegk3" path="res://Overworld/Tilesets/HIFUUFWALLFIX.png" id="3_s4and"]
 [ext_resource type="TileSet" uid="uid://dxhgcaiw0uhss" path="res://Overworld/Tilesets/barrierTileset.tres" id="4_1877u"]
 [ext_resource type="PackedScene" uid="uid://dtpiv5j0ufrcs" path="res://Overworld/playerOverworld.tscn" id="5_7cu3d"]
-[ext_resource type="Texture2D" uid="uid://ddv4k60d1e35x" path="res://Overworld/eiki_overworld.png" id="7_da5w5"]
+[ext_resource type="Texture2D" uid="uid://dby72q61lctc1" path="res://Overworld/Yukari_Sprite.png" id="6_rsqd0"]
 [ext_resource type="PackedScene" uid="uid://cw44o86ctokha" path="res://Overworld/Scenes/cutsceneStarter.tscn" id="8_m13vo"]
-[ext_resource type="Texture2D" uid="uid://dv6m3ebi7t3tk" path="res://Overworld/Maribel/maribel_overworld.png" id="8_oaamr"]
+[ext_resource type="Texture2D" uid="uid://bq7wb3nkcxqcf" path="res://Overworld/Maribel_Sprite_Forward.png" id="8_rsqd0"]
 [ext_resource type="PackedScene" uid="uid://co3tpkk01o00t" path="res://Overworld/gap.tscn" id="9_rsqd0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lh8g8"]
@@ -60,70 +60,13 @@ tile_size = Vector2i(32, 64)
 physics_layer_0/collision_layer = 128
 sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o5qje"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7ncx"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n6817"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hdjy4"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5wtp"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfcjo"]
-atlas = ExtResource("8_oaamr")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rsqd0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o5qje")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p7ncx")
-}],
-"loop": 1,
-"name": &"walkDown",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n6817")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hdjy4")
-}],
-"loop": 1,
-"name": &"walkSide",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5wtp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bfcjo")
-}],
-"loop": 1,
-"name": &"walkUp",
-"speed": 5.0
-}]
-
 [sub_resource type="GDScript" id="GDScript_xmnp2"]
 script/source = "extends Marker2D
 
 
+func cutsceneDone():
+	var tween = create_tween()
+	tween.tween_property($\"../YukariSprite\", \"modulate\", Color.TRANSPARENT, 2.0)
 
 func ending(player : Node2D):
 	print(\"End\")
@@ -168,11 +111,10 @@ position = Vector2(928, 480)
 [node name="spawnPoint" type="Marker2D" parent="." unique_id=404845328]
 position = Vector2(927, 495)
 
-[node name="YukariOverworld" type="Sprite2D" parent="." unique_id=1116827875]
-visible = false
-position = Vector2(929, -612)
-scale = Vector2(2, 2)
-texture = ExtResource("7_da5w5")
+[node name="YukariSprite" type="Sprite2D" parent="." unique_id=1116827875]
+position = Vector2(957, -568)
+scale = Vector2(0.24316393, 0.24316393)
+texture = ExtResource("6_rsqd0")
 
 [node name="CutsceneStarter" parent="." unique_id=40472308 instance=ExtResource("8_m13vo")]
 offset_left = 702.0
@@ -182,11 +124,10 @@ offset_bottom = -492.0
 dialogueName = "uid://cfmvuyg3d1wdg"
 cutsceneID = "ending"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1768937244]
-position = Vector2(926, -569)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_rsqd0")
-animation = &"walkDown"
+[node name="MaribelSprite" type="Sprite2D" parent="." unique_id=707029732]
+position = Vector2(929, -550)
+scale = Vector2(0.24316393, 0.24316393)
+texture = ExtResource("8_rsqd0")
 
 [node name="gap" parent="." unique_id=1560568519 node_paths=PackedStringArray("teleport_target") instance=ExtResource("9_rsqd0")]
 position = Vector2(1009, -616)
@@ -241,5 +182,6 @@ SilvarusLupus[/font_size]"
 fit_content = true
 horizontal_alignment = 1
 
+[connection signal="finished" from="CutsceneStarter" to="endPoint" method="cutsceneDone"]
 [connection signal="finished" from="CutsceneStarter" to="gap" method="set" binds= [&"open", true]]
 [connection signal="teleported" from="gap" to="endPoint" method="ending"]
