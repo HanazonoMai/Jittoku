@@ -63,6 +63,7 @@ sources/1 = SubResource("TileSetAtlasSource_gqs0p")
 [sub_resource type="GDScript" id="GDScript_xmnp2"]
 script/source = "extends Marker2D
 
+var ended = false
 
 func cutsceneDone():
 	var tween = create_tween()
@@ -80,7 +81,16 @@ func ending(player : Node2D):
 	await tween.finished
 	var tween2 = create_tween()
 	tween2.tween_property($\"../creditsLayer/credits\", \"modulate\", Color.WHITE, 5.0)
-	
+	ended = true
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if ended:
+			get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and ended:
+		get_tree().quit()
 "
 
 [node name="testScene" type="Node2D" unique_id=367241156]
@@ -178,7 +188,10 @@ Sheep (not a cat)
 Hanazono Mai
 
 [b]Writing:[/b]
-SilvarusLupus[/font_size]"
+SilvarusLupus[/font_size]
+
+
+[color=gray]Press any key to exit[/color]"
 fit_content = true
 horizontal_alignment = 1
 
